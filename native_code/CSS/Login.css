@@ -1,0 +1,124 @@
+body{
+    margin: 0;
+    padding: 0;
+    background: url(../IMG/Login-back.jpg) no-repeat center top; 
+    background-size: cover;
+    height: 100vh;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+:root {
+    --white: #FFFFFF;
+    --black: #000000;
+    --rblack: #2e2e2e;
+    --very-light-pink: #C7C7C7;
+    --text-input-field: #F7F7F7;
+    --rgreen: #7BBB54;
+    --rsky-blue: #48c4da;
+    --ryellow: #FACC00;
+    --rcyan: #43AF9A;
+    --rred: #B4426F;
+    --rorange: #F48040;
+    --rorangew: #f5dfd4;
+    --tag: 1em;
+    --sm: 1em;
+    --md: 1.5em;
+    --lg: 2em;
+  }
+
+
+.login-box{
+    width: 320px;
+    height: 420px;
+    background-color: rgb(255, 255, 255);
+    color: var(--rgreen);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    padding: 70px 30px;
+    border-radius: 20px ;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.login-box .avatar{
+    width: 200px;
+}
+
+.login-box h1{ 
+    margin: 0;
+    padding: 0 0 0px;
+    text-align: center;
+    display: block;
+    font-size: var(--md);
+}
+
+.login-box label{
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    display: block;
+}
+
+.login-box input{
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.login-box input[type="text"],
+.login-box input[type="password"] {
+    border: none;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    outline: none;
+    height: 40px;
+    color: var(--black);
+    font-size: var(--sm);
+}
+
+.login-box #logIn {
+    border: none;
+    outline: none;
+    height: 40px;
+    width: 200px;
+    background-color: var(--rcyan);
+    color: #fff;
+    font-size: var(--sm);
+    border-radius: 20px;
+    font-size: var(--sm);
+    font-weight: 600;
+}
+
+.login-box a{
+    text-decoration: none;
+    font-size: 12px;
+    line-height: 20px;
+    color: var(--rred)
+}
+
+.login-box a:hover {
+    color: #000;
+}
+
+.login-box #logIn:hover{
+    background-color: var(--rred);
+    transition: .3s;
+}
+
+#wrongPass{
+    color: var(--rred);
+    font-size: 12px;
+    margin-top: 0;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.inactive{
+    visibility:hidden;
+}

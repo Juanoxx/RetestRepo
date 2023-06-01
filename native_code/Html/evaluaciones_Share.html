@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio-ReTest+</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/CSS/webApp.css">
+</head>
+<body>
+    <header>
+        <nav class="header_nav">
+            <ul class="header_tag">
+                <li class="header_logo header_tag_item"><img src="/IMG/logo-green.png" alt="ReTest+ logo color"></li>
+                <li id="header_tag_mc" class="header_tag_item "><a href="./cursos.html">Mis Cursos</a></li>  
+                <li id="header_tag_me" class="header_tag_item header_tag_active"><a href="./evaluaciones.html">Mis Evaluaciónes</a></li>
+          </ul>
+            <ul class="header_tool">
+                <li class="header_create">Crear</li>
+                <li id="header_user" class="header_icon"><img src="/IMG/Iconos/user_icon.svg" alt="Icono Perfil"></li>
+                <li id="header_alert" class="header_icon"><img src="/IMG/Iconos/bell_icon.svg" alt="Campana Alerta"></li>
+            </ul>
+        </nav>
+    </header>
+    <aside>
+        <ul>
+            <li id="aside_generalView" class="aside_active"><a href="#">Vista general</a> </li>
+            <li id="aside_destacado"><a href="#">Destacado</a></li>
+            <li id="aside_archivado"><a href="#">Archivados</a></li>
+        </ul>
+    </aside>
+    <main>
+        <nav class="main_nav">
+            <ul>
+                <li id="main_tag_reciente" class="main_tag"><a href="./evaluaciones.html">Reciente</a></li>
+                <li id="main_tag_borradores" class="main_tag"><a href="./evaluaciones_Borradores.html">Borradores</a></li>
+                <li id="main_tag_compartido" class="main_tag active_tag"><a href="./evaluaciones_Share.html">Compartido conmigo</a></li>
+            </ul>
+            <div id="webapp_search" class="main_search"></span><input id="search_box" placeholder="Buscar" name="Buscar" type="text" class="webapp-search"></div>
+        </nav>
+        <section class="webapp">
+
+            <div class="webapp_header_grid">
+                <h2 class="webapp_header">Estado</h2>
+                <h2 class="webapp_header">Nombre Prueba</h2>
+                <h2 class="webapp_header">Total</h2>
+                <h2 class="webapp_header">Curso</h2>
+                <h2 class="webapp_header">PC</h2>
+                <h2 class="webapp_header">PN</h2>
+                <h2 class="webapp_header">Alerta</h2>
+            </div>
+
+            <div class="webapp_grid">
+                <img class="test_online alert_dissable" src="/IMG/Iconos/greenCircle_icon.svg" alt="Circulo verde">
+                <h3>No hay evaluaciones compartidas</h3>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <img class="alert alert_dissable" src="/IMG/Iconos/yellowCircle_icon.svg" alt="Circulo Amarillo">
+            </div>
+
+        </section>
+    </main>
+</body>
+</html>

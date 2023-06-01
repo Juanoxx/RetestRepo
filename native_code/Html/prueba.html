@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+
+        <title>ReTest+</title>
+
+        <link  rel="stylesheet" type="text/css" href="../Css/platform.css">
+        <link  rel="stylesheet" type="text/css" href="../CSS/prueba.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Nunito" rel="stylesheet">
+        <script type="module">
+            // Import the functions you need from the SDKs you need
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.1/firebase-app.js";
+            import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.0.1/firebase-analytics.js";
+            // TODO: Add SDKs for Firebase products that you want to use
+            // https://firebase.google.com/docs/web/setup#available-libraries
+          
+            // Your web app's Firebase configuration
+            // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+            const firebaseConfig = {
+              apiKey: "AIzaSyAuqIaoZTkckQsqBY-poxinIGIuvnMp6pM",
+              authDomain: "retestplus.firebaseapp.com",
+              projectId: "retestplus",
+              storageBucket: "retestplus.appspot.com",
+              messagingSenderId: "862139440244",
+              appId: "1:862139440244:web:59e3939d8167462b8b4521",
+              measurementId: "G-YHRWJ2PXJJ"
+            };
+          
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+            const analytics = getAnalytics(app);
+          </script>
+    </head>
+    <body>
+        
+        <aside id="sidebar">
+            <ul>
+                <li><div class="logo"><span class="Re">Re</span><span class="test">test</span><span class="plus">+</span></div></li>
+                <li>OPCIÓN 1</li>
+                <li>OPCIÓN 2</li>
+                <li>OPCIÓN 3</li>
+            </ul>
+        </aside>
+
+        <header>
+            <h1>Prueba de matemática</h1>
+            <h2>Objetivo: Aplicar la ecuación</h2>
+        </header>
+        <main>
+            <section>
+                <div class="pregunta">
+                    <h1> Pregunta 1</h1>
+                    <h2> Calcular cuánto mide la hipotenusa de un triángulo rectángulo con cuyos catetos miden 3 y 4 centímetros. </h2>
+                    <img src="../IMG/ejemplo/1.png">
+                    <article>
+                        <div><input type="radio" name="respuesta1" required autocomplete="none"><label for="respuesta">5</label></div>
+                        <div><input type="radio" name="respuesta1" required autocomplete="none"><label for="respuesta">6</label></div>
+                        <div><input type="radio" name="respuesta1" required autocomplete="none"><label for="respuesta">7</label></div>
+                        <div><input type="radio" name="respuesta1" required autocomplete="none"><label for="respuesta">8</label></div>
+                    </article>
+                </div>
+
+                <div class="pregunta">
+                    <h1> Pregunta 2</h1>
+                    <h2> ¿Cuánto mide la hipotenusa de un triángulo rectángulo cuyos catetos miden 1? </h2>
+                    <img src="../IMG/ejemplo/2.png">
+                    <article>
+                        <div><input type="radio" name="respuesta2" required autocomplete="none"><label for="respuesta">5</label></div>
+                        <div><input type="radio" name="respuesta2" required autocomplete="none"><label for="respuesta">6</label></div>
+                        <div><input type="radio" name="respuesta2" required autocomplete="none"><label for="respuesta">7</label></div>
+                        <div><input type="radio" name="respuesta2" required autocomplete="none"><label for="respuesta">8</label></div>
+                    </article>
+                   </div>
+
+                <div class="pregunta">
+                    <h1> Pregunta 3</h1>
+                    <h2> ¿A qué altura está la cometa de Ana si su cuerda mide L=8 metros y tendría que moverse 6 metros para situarse debajo de ella?</h2>
+                    <img src="../IMG/ejemplo/3.png">
+                    <article>
+                        <div><input type="radio" name="respuesta3" required autocomplete="none"><label for="respuesta">5</label></div>
+                        <div><input type="radio" name="respuesta3" required autocomplete="none"><label for="respuesta">6</label></div>
+                        <div><input type="radio" name="respuesta3" required autocomplete="none"><label for="respuesta">7</label></div>
+                        <div><input type="radio" name="respuesta3" required autocomplete="none"><label for="respuesta">8</label></div>
+                    </article>
+                    </div>
+
+                <div class="pregunta">
+                    <h1> Pregunta 4</h1>
+                    <h2> ¿Cuánto miden los lados de un cuadrado cuya diagonal mide d=2? </h2>
+                    <img src="../IMG/ejemplo/4.png">
+                    <article>
+                        <div><input type="radio" name="respuesta4" required autocomplete="none"><label for="respuesta">5</label></div>
+                        <div><input type="radio" name="respuesta4" required autocomplete="none"><label for="respuesta">6</label></div>
+                        <div><input type="radio" name="respuesta4" required autocomplete="none"><label for="respuesta">7</label></div>
+                        <div><input type="radio" name="respuesta4" required autocomplete="none"><label for="respuesta">8</label></div>
+                    </article>
+                    </div>
+            </section>
+            <div class="login-box">
+                <input type="submit" value="Enviar">
+            </div>
+        </main>
+        <header>

@@ -1,0 +1,558 @@
+/*  Header */
+
+
+.header{
+    width: 100%;
+    height: calc(100vh - 50px);
+    min-height: 500px;
+    background: #99E5F0;
+    background: rgb(102,131,189);
+    background: linear-gradient(90deg, rgba(102, 131, 189, 0.795) 0%, rgba(153, 228, 240, 0.781) 50%, rgba(0,254,255,0.6194852941176471) 100%);
+    position: relative;
+    overflow: hidden;
+}
+.header .wave{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.header .header-background{
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    
+}
+
+.header .txt-header{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.header .txt-header h1{
+    font-size: 60px;
+    color: #fff;
+    margin: 0 0 10px 0;
+}
+
+.header .txt-header h2{
+    font-size: 40px;
+    font-weight: 300;
+    color: #fff;
+    margin: 0 0 0 0;
+}
+
+.Header-nav{
+    height: 50px;
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: right;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    line-height: normal;
+    flex: 1 1;
+    background: #99E5F0;
+    background: rgb(102,131,189);
+    background: linear-gradient(90deg, rgba(102, 131, 189, 0.795) 0%, rgba(117, 175, 184, 0.9) 50%, rgba(1, 196, 196, 0.9) 100%);
+    
+}
+.Header-nav h3{
+    font-size: 20px;
+    position: absolute;
+    left: 20px;
+    font-weight: 400;
+    color: #fff;
+    margin: 0;
+
+}
+
+.Header-nav a {
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.Header-nav ul{
+    height: 100%;
+    position: absolute;
+    display: flex;
+    right: 0;
+
+}
+.Header-nav ul li{
+    list-style: none;
+    height: 100%;
+}
+.Header-nav ul li a{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+
+/*                   MAIN                       */
+/* Inicio*/
+ main .Inicio{
+     width: 90%;
+    padding: 0px 0 60px 0;
+}
+
+.contenedor-inicio .plus{
+    width: 125px;
+    height: 125px;
+}
+
+.contenedor-inicio{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.contenedor-inicio h2{
+    font-size: 120px;
+}
+.contenedor-inicio .plus{
+    margin: 0;
+}
+
+.imagen-inicio{
+    width: 40%;
+}
+
+.Inicio .contenido-textos{
+    width: 48%;
+}
+
+.contenido-textos h3{
+    margin-bottom: 15px;
+    font-size: 23px;
+}
+
+.contenido-textos h3 span{
+    background: #21458a;
+    color: #fff;
+    border-radius: 50%;
+    display: inline-block;
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    padding: 2px;
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, .5);
+    margin-right: 5px;
+}
+
+.contenido-textos p{
+    padding: 0px 0px 10px 15px;
+    font-weight: 300;
+    text-align: justify;
+}
+
+.titulo{
+    margin: 0;
+}
+
+
+
+/*         ¿Cómo ayudamos?         */
+
+.contenedor-servicios{
+    background-color: #c5f6fd;
+    padding: 10px 0 30px 0 ;
+    position: relative;
+    height: 90vh;
+    max-height: 450px;
+    
+
+
+}
+
+#index-profesor{
+    position: absolute;
+    left: 2em;
+    bottom: 0.3em;
+    
+}
+
+#index-estudiante{
+    position: absolute;
+    top: 50px;
+
+}
+
+#index-directivo{
+    position: absolute;
+    right: 2em;
+    bottom: 0.3em;
+    
+}
+.contenedor-servicios .contenedor-articulo{
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+    align-items: center;
+
+}
+
+.contenedor-servicios article{
+    width: 30%;
+}
+
+
+.contenedor-servicios img{
+    width: 70%;
+}
+
+.contenedor-servicios .img-circular{
+    margin: auto;
+}
+
+.contenedor-servicios .cuadro-texto{
+    background-color: #fff;
+    border-radius: 10%;
+    margin-top: 5px;
+    padding: 1px 10px 10px 10px;
+    height: 170px;
+
+}
+.contenedor-servicios .cuadro-texto .texto{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+}
+
+    /*  ¿Cómo funciona? */
+
+.Proceso{
+    padding-top: 10px;
+    margin: 0 0 20px 0;
+    padding-bottom: 20px;
+    border: 10px solid #c5f6fd;
+}
+
+.contenedor-proceso{
+    position: relative;
+    display: flex;
+    margin: auto;
+    text-align: center;
+    justify-content: space-evenly;
+}
+
+.Proceso img{
+    width: 100px;
+}
+
+
+.Proceso article{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 16.5%;
+    height: 100%;
+}
+
+
+
+
+#proceso1 .img-circular{
+    background-color: rgba(102, 115, 189);
+}
+#proceso2 .img-circular{
+    background-color: rgba(114, 144, 201);
+}
+#proceso3 .img-circular{
+    background-color: rgba(127, 172, 214);
+}
+#proceso4 .img-circular{
+    background-color: rgba(140, 200, 227);
+}
+#proceso5 .img-circular{
+    background-color: rgba(153, 228, 240);
+}
+
+
+
+
+
+   /* Footer */
+
+.main-footer{
+    background: #21458a;
+    padding: 60px 0 30px 0;
+    margin: auto;
+    overflow: hidden;
+}
+
+.main-footer .contenedor-footer{
+    display: flex;
+    width: 90%;
+    justify-content: space-evenly;
+    margin: auto;
+    padding-bottom: 50px;
+    border-bottom: 1px solid #ccc;
+}
+
+.main-footer .content-foo{
+    text-align: center;
+    width: 20%;
+}
+
+.main-footer .content-foo h4{
+    color: #fff;
+    border-bottom: 3px solid #99E5F0;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+.main-footer .content-foo p{
+    color: #ccc;
+}
+
+.main-footer .titulo-final{
+    text-align: center;
+    font-size: 24px;
+    margin: 20px 0 0 0;
+    color: #fff;
+}
+
+/*------------------------------------         Responsive design                ------------------------------- */
+
+@media screen and (max-width:810px) {
+    
+
+    .header{
+        width: 100%;
+        height: 400px;
+    }
+
+    .header .header-background{
+        width: auto;
+        height: 400px;
+    }
+    
+
+    .header .txt-header h1{
+        font-size: 40px;
+    }
+    
+    .header .txt-header h2{
+        font-size: 20px;
+
+    }
+ 
+    .Header-nav a {
+        color: #fff;
+        font-weight: 600;
+        text-decoration: none;
+    }
+    
+    .Header-nav ul{
+        visibility: hidden;
+    }
+    
+    /*                   MAIN                       */
+    /* Inicio*/
+     main .Inicio{
+         width: 90%;
+        padding: 0px 0 0px 0;
+    }
+    
+    .contenedor-inicio .plus{
+        width: 50px;
+        height: 50px;
+    }
+    .Inicio .contenido-textos{
+        width: 100%;
+        text-align: justify;
+        margin: auto;
+    }
+    .contenedor-inicio{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .contenedor-inicio h2{
+        visibility: hidden;
+        position: absolute;
+    }
+
+    
+    
+    /*         ¿Cómo ayudamos?         */
+    
+    .contenedor-servicios{
+        background-color: #c5f6fd;
+        padding: 10px 0 30px 0 ;
+        position: relative;
+        height:max-content;
+        max-height: max-content;
+    }
+    
+    #index-profesor{
+        position:relative;
+        left:unset;
+        bottom: unset;
+        
+    }
+    
+    #index-estudiante{
+        position: relative;
+        top: unset;
+    
+    }
+    
+    #index-directivo{
+        position: relative;
+        right: unset;
+        bottom: unset;
+        
+    }
+    .contenedor-servicios .contenedor-articulo{
+        display: flex;
+        flex-direction: column;
+        justify-content:unset;
+    
+    }
+    
+    .contenedor-servicios article{
+        width: 90%;
+    }
+    
+    
+    .contenedor-servicios img{
+        width: 70%;
+    }
+    
+    .contenedor-servicios .img-circular{
+        margin: auto;
+        margin-top: 10px;
+    }
+    
+        /*  ¿Cómo funciona? */
+    
+    .Proceso{
+        padding-top: 10px;
+        padding-bottom: 0px;
+        margin: 0 0 20px 0;
+        border: 10px solid #c5f6fd;
+    }
+    .Proceso .titulo{
+        margin: 10px 0 15px 0;
+    }
+    
+    .contenedor-proceso{
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+        text-align: center;
+        justify-content: unset;
+    }
+    
+    .Proceso img{
+        width: 100px;
+    }
+    
+    
+    .Proceso article{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+    }
+
+    .texto-proceso{
+        width: 60%;
+    }
+    
+    
+    
+    
+    #proceso1{
+        background-color: rgba(102, 115, 189);
+        color: #fff;
+    }
+    #proceso2{
+        background-color: rgba(114, 144, 201);
+        color: #fff;
+    }
+    #proceso3{
+        background-color: rgba(127, 172, 214);
+    }
+    #proceso4{
+        background-color: rgba(140, 200, 227);
+    }
+    #proceso5{
+        background-color: rgba(153, 228, 240);
+    }
+    
+    .contenedor-inicio img{
+        visibility: hidden;
+        position: absolute;
+    }
+    
+    
+    
+       /* Footer */
+    
+    .main-footer{
+        background: #21458a;
+        padding: 20px 0 30px 0;
+        margin: auto;
+        overflow: hidden;
+    }
+
+    .main-footer h4{
+        font-size: 20px;
+    }
+    
+    .main-footer .contenedor-footer{
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+        justify-content: space-evenly;
+        margin: auto;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #ccc;
+    }
+    
+    .main-footer .content-foo{
+        text-align: center;
+        width: 100%;
+    }
+    
+    .main-footer .content-foo h4{
+        color: #fff;
+        border-bottom: 3px solid #99E5F0;
+        padding-bottom: 5px;
+        margin-bottom: 10px;
+    }
+    
+    .main-footer .content-foo p{
+        color: #ccc;
+    }
+    
+    .main-footer .titulo-final{
+        text-align: center;
+        font-size: 24px;
+        margin: 20px 0 0 0;
+        color: #fff;
+    }
+
+
+    
+}

@@ -1,0 +1,116 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Nunito', sans-serif;
+}
+
+.Re {
+    font-weight:1000;
+    margin-right: 0.1em
+}
+.test{
+    font-weight: 300;
+}
+.plus{
+    background-color: #21458a;
+    color: #fff;
+    border-radius: 10%;
+    display: inline-block;
+    text-align: center;
+    justify-content: center;
+    height: 100%;
+    width:1.3em;
+    box-shadow: 0 0 1em 0 rgba(0, 0, 0, .5);
+    margin-left: 0.3em;
+    font-weight: 1000;
+}
+
+nav{
+    height: 50px;
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: right;
+    width: 100%;
+    padding: 10px 50px 10px 0;
+    top: 0;
+    z-index: 10;
+    background: #99E5F0;
+    background: rgb(102,131,189);
+    background: linear-gradient(90deg, rgba(102, 131, 189, 0.795) 0%, rgba(153, 228, 240, 0.781) 50%, rgba(0,254,255,0.6194852941176471) 100%);
+}
+nav h3{
+    font-size: 20px;
+    position: absolute;
+    font-weight: 400;
+    color: #fff;
+    left: 50px;
+
+}
+
+nav .links{
+    flex: 1 1;
+}
+
+nav a {
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+    margin-right: 20px;
+}
+
+nav a:hover{
+    text-decoration: underline;
+
+}
+
+#sidebar{
+    position: fixed;
+    width: 200px;
+    height: 100%;
+    background-color:#21458a;
+    z-index: 1000;
+    left: -200px;
+    transition: all 500ms linear;
+
+}
+
+#sidebar.active{
+    left: 0;
+}
+
+#sidebar ul li{
+    color: rgba(230,230,230,0.9);
+    text-align: center;
+    padding: 15px 10px;
+    list-style: none;
+    border-bottom: 1px solid rgba(100,100,100,.3);
+}
+
+.logo{
+    margin: 0 auto;
+    font-size: 25px;
+    color: #fff;
+}
+
+#sidebar .toggle-btn{
+    position: absolute;
+    left: 230px;
+    top: 20px;
+    cursor: pointer;
+}
+
+#sidebar .toggle-btn span{
+    display: block;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    font-size: 30px;
+    border: 1px solid #000 ;
+    border-radius: 10%;
+}
