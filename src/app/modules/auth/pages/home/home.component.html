@@ -19,14 +19,11 @@
         <nav class="navbar">
             <img src="../../../../../assets/IMG/logo01-blanco-v2-sinfondo (1).png" class="nav-retest" alt="logo">
             <ul class="links">
-                <li  class="item-navbar"><a data-scroll href="#secction-1" role="button" aria-pressed="true" href="">Descripción</a></li>
-                <li class="item-navbar"><a data-scroll href="#secction-2" role="button" aria-pressed="true" href="">Equipo</a></li>
-                <li class="item-navbar"><a data-scroll href="#secction-3" role="button" aria-pressed="true" href="">Nuestros propósitos</a></li>
-                <li class="item-navbar"><a data-scroll href="#secction-4" role="button" aria-pressed="true" href="">Funcionamiento</a></li>
-                <li class="item-navbar"><a data-scroll href="#secction-5" role="button" aria-pressed="true" href="">Contacto</a></li>
+                <li *ngFor="let section of sections" class="item-navbar">
+                  <a (click)="scrollTo(section.id)">{{section.name}}</a>
+                </li>
                 <div class="box-log-in"><div class="log-in"><a href="auth/login">Iniciar sesión</a></div></div>
-                
-            </ul>
+              </ul>
         </nav>
 
         
