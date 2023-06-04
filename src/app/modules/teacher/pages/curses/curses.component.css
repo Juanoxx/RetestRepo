@@ -191,6 +191,8 @@ aside ul li{
     position: flex;
     justify-content: center;
     text-align: center;
+    font-weight: 600;
+    text-decoration: none;
 }
 
 aside ul li a:hover{
@@ -199,16 +201,8 @@ aside ul li a:hover{
     transition: .2s;
 }
 
-aside ul li a{
-    color: var(--rblack);
-    font-weight: 600;
-    text-decoration: none;
-    
-}
-
 .aside_active a{
     color: var(--rgreen);
-
 }
 
 /* main */
@@ -229,6 +223,7 @@ main{
     right: 0;
     top: 0;
     padding-top: 60px;
+    background-color: var(--text-input-field);
 }
 
 .main_nav{
