@@ -11,19 +11,19 @@ const routes: Routes = [
   {
     path: 'teacher',
     loadChildren: () => import('./modules/teacher/teacher.module').then(m => m.TeacherModule),
-    canActivate: [AuthGuard],
+    canActivate: [RoleGuard],
     data: {role: 'teacher'}
   },
   {
     path: 'student',
     loadChildren: () => import('./modules/student/student.module').then(m => m.StudentModule),
-    canActivate: [AuthGuard],
+    canActivate: [RoleGuard],
     data: {role: 'student'}
   },
   {
     path: 'admin',
     loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule),
-    canActivate: [AuthGuard],
+    canActivate: [RoleGuard],
     data: {role: 'admin'}
   },
   {

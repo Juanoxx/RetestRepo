@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TeacherService } from '../../../../services/teacher.service';
 import { Router } from '@angular/router';
-
+import { collection, addDoc } from 'firebase/firestore';
 @Component({
   selector: 'app-curses',
   templateUrl: './curses.component.html',
@@ -33,11 +33,11 @@ export class CursesComponent implements OnInit {
   createUser() {
     const user = {
       domicilio: 'Apolo Xlll 1641',
-      email: 'juanadmin@gmail.cl',
+      email: 'juantest@gmail.cl',
       first_name: 'Juan',
       last_name: 'Arredondo',
       password: 'hashhash',
-      rol: 'admin',
+      rol: 'teacher',
       rut: '19283992-0',
       telefono: '992199378'
     };
