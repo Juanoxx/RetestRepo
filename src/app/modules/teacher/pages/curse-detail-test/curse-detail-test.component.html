@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio-ReTest+</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <nav class="header_nav">
+            <ul class="header_tag">
+                <li class="header_logo header_tag_item"><img src="../../../../../assets/IMG/logo-green.png"
+                        alt="ReTest+ logo color"></li>
+                <li id="header_tag_mc" class="header_tag_item header_tag_active"><a href="teacher/cursos">Mis Cursos</a>
+                </li>
+                <li id="header_tag_me" class="header_tag_item"><a href="teacher/evaluaciones">Mis Evaluaciónes</a></li>
+            </ul>
+            <ul class="header_tool">
+                <li class="header_create" style="cursor: pointer;">Crear</li>
+                <!--
+                <li id="header_user" class="header_icon">
+                    <img src="../../../../../assets/IMG/Iconos/user_icon.svg" alt="Icono Perfil">
+                </li>
+                <li id="header_alert" class="header_icon">
+                    <img src="../../../../../assets/IMG/Iconos/bell_icon.svg" alt="Campana Alerta">
+                </li>
+                -->
+                <button class="header_create" style="cursor: pointer;" (click)="logout()">Cerrar sesión</button>
+            </ul>
+        </nav>
+    </header>
+    <aside>
+        <ul>
+            <li id="aside_generalView" [ngClass]="{'aside_active': activeView === 'general'}"
+                (click)="setActiveView('general')">
+                <a href="#">Vista general</a>
+            </li>
+            <li id="aside_destacado" [ngClass]="{'aside_active': activeView === 'destacado'}"
+                (click)="setActiveView('destacado')">
+                <a href="#">Destacado</a>
+            </li>
+            <li id="aside_archivado" [ngClass]="{'aside_active': activeView === 'archivado'}"
+                (click)="setActiveView('archivado')">
+                <a href="#">Archivados</a>
+            </li>
+        </ul>
+    </aside>
+    <main>
+        <nav class="main_nav">
+            <ul>
+                <li id="main_tag_reciente" class="main_tag"><a href="./cursos.html">Mis Cursos</a></li>
+                <li id="main_tag_reciente" class="main_tag"><a href="./matematica.html">2023 Matemática 3°A</a></li>
+                <li id="main_tag_reciente" class="main_tag active_tag"><a href="#">Prueba Geometría: Angulos</a></li>
+            </ul>
+            <div id="webapp_search" class="main_search"><input id="search_box" placeholder="Buscar" name="Buscar"
+                    type="text" class="webapp-search"></div>
+        </nav>
+
+        <div class="curso_panel">
+
+            <section class="webapp">
+
+                <div class="webapp_header_grid_alumno">
+                    <h2 class="webapp_header">N°</h2>
+                    <h2 class="webapp_header">Nombre</h2>
+                    <h2 class="webapp_header">Promedio</h2>
+                    <h2 class="webapp_header">Repeticiones</h2>
+                    <h2 class="webapp_header">Alerta</h2>
+                </div>
+                <a href="prueba.html">
+                    <div class="webapp_grid webapp_grid_alumno">
+                        <span>1</span>
+                        <h3>Alumno DEMO</h3>
+                        <span>5,9</span>
+                        <span>4</span>
+                        <img class="alert" src="../../../../../assets/IMG/Iconos/yellowCircle_icon.svg" alt="Circulo Amarillo">
+                    </div>
+                </a>
+                <a href="prueba.html">
+                    <div class="webapp_grid webapp_grid_alumno">
+                        <span>1</span>
+                        <h3>Alumno DEMO</h3>
+                        <span>5,9</span>
+                        <span>4</span>
+                        <img class="alert" src="../../../../../assets/IMG/Iconos/yellowCircle_icon.svg" alt="Circulo Amarillo">
+                    </div>
+                </a>
+                <a href="prueba.html">
+                    <div class="webapp_grid webapp_grid_alumno">
+                        <span>1</span>
+                        <h3>Alumno DEMO</h3>
+                        <span>5,9</span>
+                        <span>4</span>
+                        <img class="alert" src="../../../../../assets/IMG/Iconos/yellowCircle_icon.svg" alt="Circulo Amarillo">
+                    </div>
+                </a>
+                <a href="prueba.html">
+                    <div class="webapp_grid webapp_grid_alumno">
+                        <span>1</span>
+                        <h3>Alumno DEMO</h3>
+                        <span>5,9</span>
+                        <span>4</span>
+                        <img class="alert" src="../../../../../assets/IMG/Iconos/yellowCircle_icon.svg" alt="Circulo Amarillo">
+                    </div>
+                </a>
+                <a href="prueba.html">
+                    <div class="webapp_grid webapp_grid_alumno">
+                        <span>1</span>
+                        <h3>Alumno DEMO</h3>
+                        <span>5,9</span>
+                        <span>4</span>
+                        <img class="alert" src="../../../../../assets/IMG/Iconos/yellowCircle_icon.svg" alt="Circulo Amarillo">
+                    </div>
+                </a>
+                <a href="prueba.html">
+                    <div class="webapp_grid webapp_grid_alumno">
+                        <span>1</span>
+                        <h3>Alumno DEMO</h3>
+                        <span>5,9</span>
+                        <span>4</span>
+                        <img class="alert" src="../../../../../assets/IMG/Iconos/yellowCircle_icon.svg" alt="Circulo Amarillo">
+                    </div>
+                </a>
+                <a href="prueba.html">
+                    <div class="webapp_grid webapp_grid_alumno">
+                        <span>1</span>
+                        <h3>Alumno DEMO</h3>
+                        <span>5,9</span>
+                        <span>4</span>
+                        <img class="alert" src="../../../../../assets/IMG/Iconos/yellowCircle_icon.svg" alt="Circulo Amarillo">
+                    </div>
+                </a>
+                <a href="prueba.html">
+                    <div class="webapp_grid webapp_grid_alumno">
+                        <span>1</span>
+                        <h3>Alumno DEMO</h3>
+                        <span>5,9</span>
+                        <span>4</span>
+                        <img class="alert" src="../../../../../assets/IMG/Iconos/yellowCircle_icon.svg" alt="Circulo Amarillo">
+                    </div>
+                </a>
+                <a href="prueba.html">
+                    <div class="webapp_grid webapp_grid_alumno">
+                        <span>1</span>
+                        <h3>Alumno DEMO</h3>
+                        <span>5,9</span>
+                        <span>4</span>
+                        <img class="alert" src="../../../../../assets/IMG/Iconos/yellowCircle_icon.svg" alt="Circulo Amarillo">
+                    </div>
+                </a>
+                <a href="prueba.html">
+                    <div class="webapp_grid webapp_grid_alumno">
+                        <span>1</span>
+                        <h3>Alumno DEMO</h3>
+                        <span>5,9</span>
+                        <span>4</span>
+                        <img class="alert" src="../../../../../assets/IMG/Iconos/yellowCircle_icon.svg" alt="Circulo Amarillo">
+                    </div>
+                </a>
+                <a href="prueba.html">
+                    <div class="webapp_grid webapp_grid_alumno">
+                        <span>1</span>
+                        <h3>Alumno DEMO</h3>
+                        <span>5,9</span>
+                        <span>4</span>
+                        <img class="alert" src="../../../../../assets/IMG/Iconos/yellowCircle_icon.svg" alt="Circulo Amarillo">
+                    </div>
+                </a>
+                <a href="prueba.html">
+                    <div class="webapp_grid webapp_grid_alumno">
+                        <span>1</span>
+                        <h3>Alumno DEMO</h3>
+                        <span>5,9</span>
+                        <span>4</span>
+                        <img class="alert" src="../../../../../assets/IMG/Iconos/yellowCircle_icon.svg" alt="Circulo Amarillo">
+                    </div>
+                </a>
+                <a href="prueba.html">
+                    <div class="webapp_grid webapp_grid_alumno">
+                        <span>1</span>
+                        <h3>Alumno DEMO</h3>
+                        <span>5,9</span>
+                        <span>4</span>
+                        <img class="alert" src="../../../../../assets/IMG/Iconos/yellowCircle_icon.svg" alt="Circulo Amarillo">
+                    </div>
+                </a>
+                <a href="prueba.html">
+                    <div class="webapp_grid webapp_grid_alumno">
+                        <span>1</span>
+                        <h3>Alumno DEMO</h3>
+                        <span>5,9</span>
+                        <span>4</span>
+                        <img class="alert" src="../../../../../assets/IMG/Iconos/yellowCircle_icon.svg" alt="Circulo Amarillo">
+                    </div>
+                </a>
+                <a href="prueba.html">
+                    <div class="webapp_grid webapp_grid_alumno">
+                        <span>1</span>
+                        <h3>Alumno DEMO</h3>
+                        <span>5,9</span>
+                        <span>4</span>
+                        <img class="alert" src="../../../../../assets/IMG/Iconos/yellowCircle_icon.svg" alt="Circulo Amarillo">
+                    </div>
+                </a>
+                <a href="prueba.html">
+                    <div class="webapp_grid webapp_grid_alumno">
+                        <span>1</span>
+                        <h3>Alumno DEMO</h3>
+                        <span>5,9</span>
+                        <span>4</span>
+                        <img class="alert" src="../../../../../assets/IMG/Iconos/yellowCircle_icon.svg" alt="Circulo Amarillo">
+                    </div>
+                </a>
+                <a href="prueba.html">
+                    <div class="webapp_grid webapp_grid_alumno">
+                        <span>1</span>
+                        <h3>Alumno DEMO</h3>
+                        <span>5,9</span>
+                        <span>4</span>
+                        <img class="alert" src="../../../../../assets/IMG/Iconos/yellowCircle_icon.svg" alt="Circulo Amarillo">
+                    </div>
+                </a>
+                <a href="prueba.html">
+                    <div class="webapp_grid webapp_grid_alumno">
+                        <span>1</span>
+                        <h3>Alumno DEMO</h3>
+                        <span>5,9</span>
+                        <span>4</span>
+                        <img class="alert" src="../../../../../assets/IMG/Iconos/yellowCircle_icon.svg" alt="Circulo Amarillo">
+                    </div>
+                </a>
+                <a href="prueba.html">
+                    <div class="webapp_grid webapp_grid_alumno">
+                        <span>1</span>
+                        <h3>Alumno DEMO</h3>
+                        <span>5,9</span>
+                        <span>4</span>
+                        <img class="alert" src="../../../../../assets/IMG/Iconos/yellowCircle_icon.svg" alt="Circulo Amarillo">
+                    </div>
+                </a>
+                <a href="prueba.html">
+                    <div class="webapp_grid webapp_grid_alumno">
+                        <span>1</span>
+                        <h3>Alumno DEMO</h3>
+                        <span>5,9</span>
+                        <span>4</span>
+                        <img class="alert" src="../../../../../assets/IMG/Iconos/yellowCircle_icon.svg" alt="Circulo Amarillo">
+                    </div>
+                </a>
+                <a href="prueba.html">
+                    <div class="webapp_grid webapp_grid_alumno">
+                        <span>1</span>
+                        <h3>Alumno DEMO</h3>
+                        <span>5,9</span>
+                        <span>4</span>
+                        <img class="alert" src="../../../../../assets/IMG/Iconos/yellowCircle_icon.svg" alt="Circulo Amarillo">
+                    </div>
+                </a>
+                <a href="prueba.html">
+                    <div class="webapp_grid webapp_grid_alumno">
+                        <span>1</span>
+                        <h3>Alumno DEMO</h3>
+                        <span>5,9</span>
+                        <span>4</span>
+                        <img class="alert" src="../../../../../assets/IMG/Iconos/yellowCircle_icon.svg" alt="Circulo Amarillo">
+                    </div>
+                </a>
+                <a href="prueba.html">
+                    <div class="webapp_grid webapp_grid_alumno">
+                        <span>1</span>
+                        <h3>Alumno DEMO</h3>
+                        <span>5,9</span>
+                        <span>4</span>
+                        <img class="alert" src="../../../../../assets/IMG/Iconos/yellowCircle_icon.svg" alt="Circulo Amarillo">
+                    </div>
+                </a>
+                <a href="prueba.html">
+                    <div class="webapp_grid webapp_grid_alumno">
+                        <span>1</span>
+                        <h3>Alumno DEMO</h3>
+                        <span>5,9</span>
+                        <span>4</span>
+                        <img class="alert" src="../../../../../assets/IMG/Iconos/yellowCircle_icon.svg" alt="Circulo Amarillo">
+                    </div>
+                </a>
+                <a href="prueba.html">
+                    <div class="webapp_grid webapp_grid_alumno">
+                        <span>1</span>
+                        <h3>Alumno DEMO</h3>
+                        <span>5,9</span>
+                        <span>4</span>
+                        <img class="alert" src="../../../../../assets/IMG/Iconos/yellowCircle_icon.svg" alt="Circulo Amarillo">
+                    </div>
+                </a>
+                <a href="prueba.html">
+                    <div class="webapp_grid webapp_grid_alumno">
+                        <span>1</span>
+                        <h3>Alumno DEMO</h3>
+                        <span>5,9</span>
+                        <span>4</span>
+                        <img class="alert" src="../../../../../assets/IMG/Iconos/yellowCircle_icon.svg" alt="Circulo Amarillo">
+                    </div>
+                </a>
+                <a href="prueba.html">
+                    <div class="webapp_grid webapp_grid_alumno">
+                        <span>1</span>
+                        <h3>Alumno DEMO</h3>
+                        <span>5,9</span>
+                        <span>4</span>
+                        <img class="alert" src="../../../../../assets/IMG/Iconos/yellowCircle_icon.svg" alt="Circulo Amarillo">
+                    </div>
+                </a>
+                <a href="prueba.html">
+                    <div class="webapp_grid webapp_grid_alumno">
+                        <span>1</span>
+                        <h3>Alumno DEMO</h3>
+                        <span>5,9</span>
+                        <span>4</span>
+                        <img class="alert" src="../../../../../assets/IMG/Iconos/yellowCircle_icon.svg" alt="Circulo Amarillo">
+                    </div>
+                </a>
+                <a href="prueba.html">
+                    <div class="webapp_grid webapp_grid_alumno">
+                        <span>1</span>
+                        <h3>Alumno DEMO</h3>
+                        <span>5,9</span>
+                        <span>4</span>
+                        <img class="alert" src="../../../../../assets/IMG/Iconos/yellowCircle_icon.svg" alt="Circulo Amarillo">
+                    </div>
+                </a>
+                <a href="prueba.html">
+                    <div class="webapp_grid webapp_grid_alumno">
+                        <span>1</span>
+                        <h3>Alumno DEMO</h3>
+                        <span>5,9</span>
+                        <span>4</span>
+                        <img class="alert" src="../../../../../assets/IMG/Iconos/yellowCircle_icon.svg" alt="Circulo Amarillo">
+                    </div>
+                </a>
+            </section>
+        </div>
+    </main>
+</body>
+
+</html>

@@ -29,4 +29,21 @@ export class CursesComponent implements OnInit {
     })
     .catch(error => console.log(error));
   }
+
+  createUser() {
+    const user = {
+      domicilio: 'Apolo Xlll 1641',
+      email: 'juanadmin@gmail.cl',
+      first_name: 'Juan',
+      last_name: 'Arredondo',
+      password: 'hashhash',
+      rol: 'admin',
+      rut: '19283992-0',
+      telefono: '992199378'
+    };
+  
+    this.th.createUser(user)
+      .then(() => console.log('Usuario creado exitosamente.'))
+      .catch(error => console.log(error));
+  }
 }

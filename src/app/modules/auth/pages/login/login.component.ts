@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   formReg: FormGroup;
-  showError: boolean;  // Nuevo campo para controlar el mensaje de error
+  showError: boolean; 
 
   constructor(private th: TeacherService, private router: Router) {  // Inyecta el servicio Router
     this.formReg = new FormGroup({

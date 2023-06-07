@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "retestplus"
+  },
+  "targets": {
+    "retestplus": {
+      "hosting": {
+        "Retest": [
+          "retestplus"
+        ]
+      }
+    }
+  }
+}
