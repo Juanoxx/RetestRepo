@@ -1,1 +1,63 @@
-<p>evaluations works!</p>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio-ReTest+</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <app-navbar></app-navbar>
+    <aside>
+        <ul>
+            <li id="aside_generalView" class="aside_active"><a href="#">Vista general</a> </li>
+            <li id="aside_destacado"><a href="#">Destacado</a></li>
+            <li id="aside_archivado"><a href="#">Archivados</a></li>
+        </ul>
+    </aside>
+    <main>
+        <nav class="main_nav">
+            <ul>
+                <li id="main_tag_reciente" class="main_tag active_tag"><a href="./evaluaciones.html">Reciente</a></li>
+                <li id="main_tag_borradores" class="main_tag"><a href="./evaluaciones_Borradores.html">Borradores</a></li>
+                <li id="main_tag_compartido" class="main_tag"><a href="./evaluaciones_Share.html">Compartido conmigo</a></li>
+            </ul>
+            <div id="webapp_search" class="main_search"><input id="search_box" placeholder="Buscar" name="Buscar" type="text" class="webapp-search"></div>
+        </nav>
+        <section class="webapp">
+
+            <div class="webapp_header_grid">
+                <h2 class="webapp_header">Estado</h2>
+                <h2 class="webapp_header">Nombre Prueba</h2>
+                <h2 class="webapp_header">Total</h2>
+                <h2 class="webapp_header">Curso</h2>
+                <h2 class="webapp_header">PC</h2>
+                <h2 class="webapp_header">PN</h2>
+                <h2 class="webapp_header">Alerta</h2>
+            </div>
+
+            <div class="webapp_grid">
+                <img class="test_online" src="../../../../../assets/IMG/Iconos/greenCircle_icon.svg" alt="Circulo verde">
+                <h3>Prueba de geometría: Angulos</h3>
+                <span>50</span>
+                <span>3°A</span>
+                <span> 1,9</span>
+                <span> 5,8</span>
+                <img class="alert" src="../../../../../assets/IMG/Iconos/yellowCircle_icon.svg" alt="Circulo Amarillo">
+            </div>
+            <div class="webapp_grid">
+                <img class="test_online" src="../../../../../assets/IMG/Iconos/redCircle_icon.svg" alt="Circulo rojo">
+                <h3>Prueba de geometría: Plano Cartesiano</h3>
+                <span>57</span>
+                <span>3°A</span>
+                <span> 1,3</span>
+                <span> 4,7</span>
+                <img class="alert alert_dissable" src="../../../../../assets/IMG/Iconos/greenCircle_icon.svg" alt="Circulo Amarillo">
+            </div>
+        
+        </section>
+    </main>
+</body>

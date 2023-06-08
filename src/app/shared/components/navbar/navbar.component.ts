@@ -1,17 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { TeacherService } from '../../../../services/teacher.service';
 import { Router } from '@angular/router';
-@Component({
-  selector: 'app-curses',
-  templateUrl: './curses.component.html',
-  styleUrls: ['./curses.component.css']
-})
-export class CursesComponent implements OnInit {
+import { TeacherService } from 'src/app/services/teacher.service';
 
+@Component({
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.css']
+})
+export class NavbarComponent implements OnInit {
+
+  userRole: any;
   constructor(private th: TeacherService,
     private router: Router) { }
 
   ngOnInit(): void {
+    this.userRole = sessionStorage.getItem('userRole');
   }
 
   activeView: string = 'general';
@@ -20,13 +23,12 @@ export class CursesComponent implements OnInit {
     this.activeView = view;
   }
 
-  logout()
-  {
+  logout() {
     this.th.logout()
-    .then(() => {
-      this.router.navigate(['/auth']);
-    })
-    .catch(error => console.log(error));
+      .then(() => {
+        this.router.navigate(['/auth']);
+      })
+      .catch(error => console.log(error));
   }
 
   createUser() {
@@ -40,7 +42,7 @@ export class CursesComponent implements OnInit {
       rut: '19283992-0',
       telefono: '992199378'
     };
-  
+
     this.th.createUser(user)
       .then(() => console.log('Usuario creado exitosamente.'))
       .catch(error => console.log(error));

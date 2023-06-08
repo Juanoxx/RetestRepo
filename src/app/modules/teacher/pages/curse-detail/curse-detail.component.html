@@ -23,29 +23,7 @@
             <button class="rButton" id="upload" type="submit" value="Upload">Subir Archivo</button>
         </div>
     </div>
-    <header>
-        <nav class="header_nav">
-            <ul class="header_tag">
-                <li class="header_logo header_tag_item"><img src="../../../../../assets/IMG/logo-green.png"
-                        alt="ReTest+ logo color"></li>
-                <li id="header_tag_mc" class="header_tag_item header_tag_active"><a href="teacher/cursos">Mis Cursos</a>
-                </li>
-                <li id="header_tag_me" class="header_tag_item"><a href="teacher/evaluaciones">Mis Evaluaciónes</a></li>
-            </ul>
-            <ul class="header_tool">
-                <li id="createTest" class="header_create" style="cursor: pointer;" (click)="openModal()">Crear</li>
-                <!--
-                <li id="header_user" class="header_icon">
-                    <img src="../../../../../assets/IMG/Iconos/user_icon.svg" alt="Icono Perfil">
-                </li>
-                <li id="header_alert" class="header_icon">
-                    <img src="../../../../../assets/IMG/Iconos/bell_icon.svg" alt="Campana Alerta">
-                </li>
-                -->
-                <button class="header_create" style="cursor: pointer;" (click)="logout()">Cerrar sesión</button>
-            </ul>
-        </nav>
-    </header>
+    <app-navbar></app-navbar>
     <aside>
         <ul>
             <li id="aside_generalView" [ngClass]="{'aside_active': activeView === 'general'}"

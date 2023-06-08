@@ -1,0 +1,19 @@
+<header>
+    <nav class="header_nav">
+        <ul class="header_tag">
+            <li class="header_logo header_tag_item"><img src="../../../../../assets/IMG/logo-green.png"
+                    alt="ReTest+ logo color"></li>
+            <li *ngIf="userRole === 'teacher'" [routerLinkActive]="['header_tag_active']" class="header_tag_item"><a routerLink="/teacher/cursos">Mis Cursos</a>
+            </li>
+            <li *ngIf="userRole === 'teacher'" [routerLinkActive]="['header_tag_active']" class="header_tag_item"><a routerLink="/teacher/evaluaciones">Mis Evaluaciónes</a></li>
+            <li *ngIf="userRole === 'student'" [routerLinkActive]="['header_tag_active']" class="header_tag_item"><a routerLink="/student/evaluaciones">Mis Evaluaciónes</a></li>
+            <li *ngIf="userRole === 'admin'" [routerLinkActive]="['header_tag_active']" class="header_tag_item"><a routerLink="/admin/teachers">Administración Profesores</a></li>
+            <li *ngIf="userRole === 'admin'" [routerLinkActive]="['header_tag_active']" class="header_tag_item"><a routerLink="/admin/students">Administración Estudiantes</a></li>
+        </ul>
+        <ul class="header_tool">
+            <li class="header_create" style="cursor: pointer;">Crear</li>
+            <button class="header_create" style="cursor: pointer;" (click)="logout()">Cerrar sesión</button>
+            <button *ngIf="userRole === 'admin'" (click)="createUser()">Crear Usuario</button>
+        </ul>            
+    </nav>
+</header>

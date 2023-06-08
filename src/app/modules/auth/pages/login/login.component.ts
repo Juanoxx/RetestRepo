@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   formReg: FormGroup;
   showError: boolean;
   auth = getAuth();
-  
+
   firestore: Firestore;
   constructor(private th: TeacherService, private router: Router) {  // Inyecta el servicio Router
     this.formReg = new FormGroup({
@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
       password: new FormControl('', Validators.required)
     });
     this.showError = false;  // Inicializa el campo en false
-    
+
     this.firestore = getFirestore();
   }
 
@@ -39,9 +39,12 @@ export class LoginComponent implements OnInit {
         if (response && response.user) {
           // Aquí el usuario se ha autenticado correctamente
           // Recupera el rol del usuario
-          const userRole= await getDoc(doc(this.firestore, `users/${response.user.uid}`));
+          const userRole = await getDoc(doc(this.firestore, `users/${response.user.uid}`));
 
-          switch(userRole.data()?.['rol']) {
+          // Guarda el rol en sessionStorage
+          sessionStorage.setItem('userRole', userRole.data()?.['rol']);
+
+          switch (userRole.data()?.['rol']) {
             case 'teacher':
               this.router.navigate(['/teacher/cursos']);
               break;
@@ -63,5 +66,5 @@ export class LoginComponent implements OnInit {
         this.showError = true;
       });
   }
-   
+
 }
