@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio-ReTest+</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <app-navbar></app-navbar>
+    <app-sidebar></app-sidebar>
+    <main>
+        <nav class="main_nav">
+            <ul>
+                <li id="main_tag_reciente" class="main_tag"><a href="./cursos.html">Mis Cursos</a></li>
+                <li id="main_tag_reciente" class="main_tag"><a href="./matematica.html">2023 Matemática 3°A</a></li>
+                <li id="main_tag_reciente" class="main_tag active_tag"><a href="#">Prueba Geometría: Angulos</a></li>
+            </ul>
+            <div id="webapp_search" class="main_search"><input id="search_box" placeholder="Buscar" name="Buscar"
+                    type="text" class="webapp-search"></div>
+        </nav>
+
+        <div class="curso_panel">
+
+            <section class="webapp">
+                <div class="webapp_header_grid_alumno">
+                  <h2 class="webapp_header">N°</h2>
+                  <h2 class="webapp_header">Nombre</h2>
+                  <h2 class="webapp_header">Promedio</h2>
+                  <h2 class="webapp_header">Repeticiones</h2>
+                  <h2 class="webapp_header">Alerta</h2>
+                </div>
+                <a href="prueba.html" *ngFor="let alumno of alumnos; index as i">
+                  <div class="webapp_grid webapp_grid_alumno">
+                    <span>{{ i + 1 }}</span>
+                    <h3>{{ alumno.name }}</h3>
+                    <span>{{ alumno.promedio }}</span>
+                    <span>{{ alumno.repetitions }}</span>
+                    <img class="alert" *ngIf="alumno.Alerta === 1" src="../../../../../assets/IMG/Iconos/yellowCircle_icon.svg" alt="Circulo Amarillo">
+                  </div>
+                </a>
+              </section>                           
+        </div>
+    </main>
+</body>
+
+</html>

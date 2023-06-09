@@ -11,13 +11,7 @@
 
 <body class="bodyCurses">
     <app-navbar></app-navbar>
-    <aside>
-        <ul>
-          <li id="aside_generalView" [ngClass]="{'aside_active': activeView === 'general'}" (click)="setActiveView('general')">
-            <a href="#">Vista general</a> 
-          </li>
-        </ul>
-      </aside>      
+    <app-sidebar></app-sidebar>     
     <main>
         <nav class="main_nav">
             <ul>

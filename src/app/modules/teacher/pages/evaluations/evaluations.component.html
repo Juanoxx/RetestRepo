@@ -11,13 +11,7 @@
 
 <body>
     <app-navbar></app-navbar>
-    <aside>
-        <ul>
-            <li id="aside_generalView" class="aside_active"><a href="#">Vista general</a> </li>
-            <li id="aside_destacado"><a href="#">Destacado</a></li>
-            <li id="aside_archivado"><a href="#">Archivados</a></li>
-        </ul>
-    </aside>
+    <app-sidebar></app-sidebar>
     <main>
         <nav class="main_nav">
             <ul>
@@ -39,23 +33,18 @@
                 <h2 class="webapp_header">Alerta</h2>
             </div>
 
-            <div class="webapp_grid">
-                <img class="test_online" src="../../../../../assets/IMG/Iconos/greenCircle_icon.svg" alt="Circulo verde">
-                <h3>Prueba de geometría: Angulos</h3>
-                <span>50</span>
-                <span>3°A</span>
-                <span> 1,9</span>
-                <span> 5,8</span>
-                <img class="alert" src="../../../../../assets/IMG/Iconos/yellowCircle_icon.svg" alt="Circulo Amarillo">
-            </div>
-            <div class="webapp_grid">
-                <img class="test_online" src="../../../../../assets/IMG/Iconos/redCircle_icon.svg" alt="Circulo rojo">
-                <h3>Prueba de geometría: Plano Cartesiano</h3>
-                <span>57</span>
-                <span>3°A</span>
-                <span> 1,3</span>
-                <span> 4,7</span>
-                <img class="alert alert_dissable" src="../../../../../assets/IMG/Iconos/greenCircle_icon.svg" alt="Circulo Amarillo">
+            <div class="webapp_grid" *ngFor="let prueba of pruebas" (click)="goToAgregarAlumnos(prueba.id)" style="cursor: pointer;">
+                <img class="test_online"
+                    [src]="prueba.state === 1 ? '../../../../../assets/IMG/Iconos/greenCircle_icon.svg' : '../../../../../assets/IMG/Iconos/redCircle_icon.svg'"
+                    alt="Estado de la prueba">
+                <h3>{{ prueba.name_test }}</h3>
+                <span>{{ prueba.total_students }}</span>
+                <span>{{ prueba.curse }}</span>
+                <span>{{ prueba.pc }}</span>
+                <span>{{ prueba.pn }}</span>
+                <img class="alert"
+                    [src]="prueba.alerta === 1 ? '../../../../../assets/IMG/Iconos/yellowCircle_icon.svg' : '../../../../../assets/IMG/Iconos/greenCircle_icon.svg'"
+                    alt="Alerta">
             </div>
         
         </section>

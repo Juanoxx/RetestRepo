@@ -23,7 +23,15 @@ export class TeacherService {
     return setDoc(doc(this.firestore, 'users', credential.user.uid), { ...user, uid: credential.user.uid });
   }
   
+  async addPrueba(userId: string, prueba: any) {
+    const db = getFirestore();
+    await setDoc(doc(collection(db, `users/${userId}/pruebas`)), prueba);
+  }
 
+  async addAlumno(userId: string, pruebaId: string, alumno: any) {
+    const db = getFirestore();
+    await setDoc(doc(collection(db, `users/${userId}/pruebas/${pruebaId}/alumnos`)), alumno);
+  }
   // Obtener un usuario por su id
   getUser(userId: string): Observable<any> {
     return docData(doc(this.firestore, `users/${userId}`));

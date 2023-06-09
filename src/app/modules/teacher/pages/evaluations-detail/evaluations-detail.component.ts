@@ -4,14 +4,13 @@ import { Router, ActivatedRoute  } from '@angular/router';
 import { getFirestore, collection, query, where, getDocs } from "firebase/firestore";
 
 @Component({
-  selector: 'app-evaluations',
-  templateUrl: './evaluations.component.html',
-  styleUrls: ['./evaluations.component.css']
+  selector: 'app-evaluations-detail',
+  templateUrl: './evaluations-detail.component.html',
+  styleUrls: ['./evaluations-detail.component.css']
 })
-export class EvaluationsComponent implements OnInit {
+export class EvaluationsDetailComponent implements OnInit {
 
-  pruebas: any[] = [];
-  
+  alumnos: any[] = [];
   userRole: any;
   userId: any;
   constructor(private th: TeacherService, private router: Router, private route: ActivatedRoute) { }
@@ -20,22 +19,21 @@ export class EvaluationsComponent implements OnInit {
     
     this.userRole = sessionStorage.getItem('userRole');
     this.userId = sessionStorage.getItem('idUser');
-    await this.getPruebas();
+
+    const pruebaId = this.route.snapshot.paramMap.get('evaluacionId');
+    if (pruebaId !== null) {
+      await this.getAlumnos(pruebaId);
+    }
   }
 
-  async getPruebas() {
+  async getAlumnos(pruebaId: string) {
     const db = getFirestore();
-    const q = query(collection(db, `users/${this.userId}/pruebas`));
+    const q = query(collection(db, `users/${this.userId}/pruebas/${pruebaId}/alumnos`));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
-      this.pruebas.push({ id: doc.id, ...doc.data() });
+      this.alumnos.push({ id: doc.id, ...doc.data() });
     });
-    console.log(this.pruebas)
+    console.log(this.alumnos)
   }
-  
 
-  goToAgregarAlumnos(evaluacionId: string) {
-    this.router.navigate([`teacher/evaluaciones/${evaluacionId}/detail`]);
-    console.log(`teacher/evaluaciones/${evaluacionId}/detail`)
-  }
 }

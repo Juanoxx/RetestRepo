@@ -13,13 +13,6 @@ export class CursesComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-  activeView: string = 'general';
-
-  setActiveView(view: string) {
-    this.activeView = view;
-  }
-
   logout()
   {
     this.th.logout()

@@ -12,4 +12,9 @@ export class SidebarComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  activeView: string = 'general';
+
+  setActiveView(view: string) {
+    this.activeView = view;
+  }
 }

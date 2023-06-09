@@ -7,6 +7,7 @@ import { EvaluationsComponent } from './pages/evaluations/evaluations.component'
 import { CurseDetailComponent } from './pages/curse-detail/curse-detail.component';
 import { CurseDetailTestComponent } from './pages/curse-detail-test/curse-detail-test.component';
 import { SharedModule } from "../../shared/shared.module";
+import { EvaluationsDetailComponent } from './pages/evaluations-detail/evaluations-detail.component';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { SharedModule } from "../../shared/shared.module";
         EvaluationsComponent,
         CurseDetailComponent,
         CurseDetailTestComponent,
+        EvaluationsDetailComponent,
     ],
     imports: [
         CommonModule,
