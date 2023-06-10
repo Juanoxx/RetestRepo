@@ -52,13 +52,9 @@ export class TeacherService {
   }
 
   login(credentials: {email: string, password: string}) {
-    return signInWithEmailAndPassword(this.auth, credentials.email, credentials.password)
-      .catch(error => {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        console.log(errorCode, errorMessage);
-      });
+    return signInWithEmailAndPassword(this.auth, credentials.email, credentials.password);
   }
+  
   logout(){
     return signOut(this.auth);
   }

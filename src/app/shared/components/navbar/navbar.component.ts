@@ -78,9 +78,9 @@ export class NavbarComponent implements OnInit {
     }
   
     const alumno = {
-      name: 'Alumno3',
-      promedio: 2.2,
-      repetitions: 10,
+      name: 'Luna',
+      promedio: 6.8,
+      repetitions: 3,
       Alerta: 1
     };
   

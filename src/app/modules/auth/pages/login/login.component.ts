@@ -1,5 +1,5 @@
 // LoginComponent
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { TeacherService } from '../../../../services/teacher.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   auth = getAuth();
 
   firestore: Firestore;
-  constructor(private th: TeacherService, private router: Router) {  // Inyecta el servicio Router
+  constructor(private th: TeacherService, private router: Router, private cd: ChangeDetectorRef) { 
     this.formReg = new FormGroup({
       email: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required)
@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
   login() {
     console.log(this.formReg.value);
     this.th.login(this.formReg.value)
-      .then(async (response) => {
+    .then(async (response) => {
         console.log(response);
         if (response && response.user) {
           // Aquí el usuario se ha autenticado correctamente
@@ -61,9 +61,9 @@ export class LoginComponent implements OnInit {
         }
       })
       .catch((error) => {
-        // Aquí hay un error durante la autenticación, por ejemplo, usuario incorrecto o contraseña
         console.error(error);
         this.showError = true;
+        this.cd.detectChanges(); // Agrega esta línea
       });
   }
 
