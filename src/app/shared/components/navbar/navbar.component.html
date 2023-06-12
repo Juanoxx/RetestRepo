@@ -12,10 +12,11 @@
         </ul>
         <ul class="header_tool">
             <li class="header_create" style="cursor: pointer;">Crear</li>
-            <button class="header_create" style="cursor: pointer;" (click)="logout()">Cerrar sesión</button>
+            <li class="header_create" style="cursor: pointer;" (click)="logout()">Cerrar sesión</li>
             <button *ngIf="userRole === 'teacher'" (click)="createUser()">Crear Usuario</button>
             <button *ngIf="userRole === 'teacher'" (click)="addPrueba()">Crear prueba</button>
             <button *ngIf="userRole === 'teacher'" (click)="addAlumno()">Crear alumno</button>
+            <button *ngIf="userRole === 'teacher'" (click)="addCurso()">Crear curso</button>
         </ul>            
     </nav>
 </header>

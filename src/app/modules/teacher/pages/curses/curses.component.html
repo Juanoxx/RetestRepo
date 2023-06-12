@@ -1,49 +1,48 @@
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio-ReTest+</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600;700&display=swap"
-        rel="stylesheet">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Inicio-ReTest+</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600;700&display=swap"
+            rel="stylesheet">
+    </head>
 
-<body class="bodyCurses">
-    <app-navbar></app-navbar>
-    <app-sidebar></app-sidebar>     
-    <main>
-        <nav class="main_nav">
-            <ul>
-                <li id="main_tag_reciente" class="main_tag active_tag"><a href="./cursos.html">Mis Cursos</a></li>
-            </ul>
-            <div id="webapp_search" class="main_search"><input id="search_box" placeholder="Buscar" name="Buscar"
-                    type="text" class="webapp-search"></div>
-        </nav>
-        <section class="webapp">
+    <body class="bodyCurses">
+        <app-navbar></app-navbar>
+        <app-sidebar></app-sidebar>     
+        <main>
+            <nav class="main_nav">
+                <ul>
+                    <li id="main_tag_reciente" class="main_tag active_tag"><a href="./cursos.html">Mis Cursos</a></li>
+                </ul>
+                <div id="webapp_search" class="main_search"><input id="search_box" placeholder="Buscar" name="Buscar"
+                        type="text" class="webapp-search"></div>
+            </nav>
+            <section class="webapp">
 
-            <div class="webapp_header_grid_class">
-                <h2 class="webapp_header">Año</h2>
-                <h2 class="webapp_header">Asignatura</h2>
-                <h2 class="webapp_header">Curso</h2>
-                <h2 class="webapp_header">Estudiantes</h2>
-                <h2 class="webapp_header">Activas</h2>
-                <h2 class="webapp_header">Promedio</h2>
-                <h2 class="webapp_header">Alerta</h2>
-            </div>
-
-            <a href="teacher/cursos/detail">
-                <div class="webapp_grid_class">
-                    <span>2023</span>
-                    <h3>Matemática</h3>
-                    <span>3°A</span>
-                    <span>42</span>
-                    <span>1</span>
-                    <span>6,2</span>
-                    <img class="alert" src="../../../../../assets/IMG/Iconos/yellowCircle_icon.svg"
-                        alt="Circulo Amarillo">
+                <div class="webapp_header_grid_class">
+                    <h2 class="webapp_header">Año</h2>
+                    <h2 class="webapp_header">Asignatura</h2>
+                    <h2 class="webapp_header">Curso</h2>
+                    <h2 class="webapp_header">Estudiantes</h2>
+                    <h2 class="webapp_header">Activas</h2>
+                    <h2 class="webapp_header">Promedio</h2>
+                    <h2 class="webapp_header">Alerta</h2>
                 </div>
-            </a>
-        </section>
-    </main>
-</body>
+
+                <a *ngFor="let curso of cursos" [routerLink]="['/teacher/cursos', curso.id, 'detail']">
+                    <div class="webapp_grid_class">
+                      <span>{{ curso.year }}</span>
+                      <h3>{{ curso.subject }}</h3>
+                      <span>{{ curso.curse }}</span>
+                      <span>{{ curso.students }}</span>
+                      <span>{{ curso.actives }}</span>
+                      <span>{{ curso.promedio }}</span>
+                      <img class="alert" src="../../../../../assets/IMG/Iconos/yellowCircle_icon.svg" alt="Circulo Amarillo">
+                    </div>
+                  </a>
+            </section>
+        </main>
+    </body>

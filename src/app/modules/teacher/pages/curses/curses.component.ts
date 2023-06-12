@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TeacherService } from '../../../../services/teacher.service';
 import { Router } from '@angular/router';
+import { getFirestore, collection, getDocs } from "firebase/firestore";
+
 @Component({
   selector: 'app-curses',
   templateUrl: './curses.component.html',
@@ -8,34 +10,29 @@ import { Router } from '@angular/router';
 })
 export class CursesComponent implements OnInit {
 
-  constructor(private th: TeacherService,
-    private router: Router) { }
+  cursos: any[] = [];
+  userId: any;
 
-  ngOnInit(): void {
+  constructor(private th: TeacherService, private router: Router) { }
+
+  async ngOnInit(): Promise<void> {
+    this.userId = sessionStorage.getItem('idUser');
+    await this.getCursos();
   }
-  logout()
-  {
+
+  async getCursos() {
+    const db = getFirestore();
+    const querySnapshot = await getDocs(collection(db, `users/${this.userId}/cursos`));
+    querySnapshot.forEach((doc) => {
+      this.cursos.push({ id: doc.id, ...doc.data() });
+    });
+  }
+
+  logout() {
     this.th.logout()
     .then(() => {
       this.router.navigate(['/auth']);
     })
     .catch(error => console.log(error));
-  }
-
-  createUser() {
-    const user = {
-      domicilio: 'Apolo Xlll 1641',
-      email: 'juantest@gmail.cl',
-      first_name: 'Juan',
-      last_name: 'Arredondo',
-      password: 'hashhash',
-      rol: 'teacher',
-      rut: '19283992-0',
-      telefono: '992199378'
-    };
-  
-    this.th.createUser(user)
-      .then(() => console.log('Usuario creado exitosamente.'))
-      .catch(error => console.log(error));
   }
 }

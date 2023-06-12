@@ -65,7 +65,8 @@ export class NavbarComponent implements OnInit {
       alerta: 1
     };
 
-    this.th.addPrueba(this.userId,prueba)
+    
+    this.th.addPrueba(this.userId,'IQGpbFq73BoWvRwrNsW5',prueba)
       .then(() => console.log('Prueba creado exitosamente.'))
       .catch(error => console.log(error));
   }
@@ -81,7 +82,7 @@ export class NavbarComponent implements OnInit {
       name: 'Luna',
       promedio: 6.8,
       repetitions: 3,
-      Alerta: 1
+      alerta: 1
     };
   
     this.th.addAlumno(this.userId, pruebaId, alumno)
@@ -89,4 +90,19 @@ export class NavbarComponent implements OnInit {
       .catch(error => console.log(error));
   }  
   
+  addCurso(){
+    const curso = {
+      year:2020,
+      subject: 'Matemáticas',
+      curse: '1°B',
+      students: 15,
+      actives: 3,
+      promedio: 3.2, //promedio curso
+      alerta: 2
+    };
+  
+    this.th.addCurso(this.userId, curso)
+      .then(() => console.log('Curso agregado exitosamente.'))
+      .catch(error => console.log(error));
+  }
 }

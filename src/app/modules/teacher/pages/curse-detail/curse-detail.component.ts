@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TeacherService } from '../../../../services/teacher.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { getFirestore, collection, getDocs } from "firebase/firestore";
 
 @Component({
   selector: 'app-curse-detail',
@@ -9,21 +10,28 @@ import { Router } from '@angular/router';
 })
 export class CurseDetailComponent implements OnInit {
 
+  pruebas: any[] = [];
+  userId: any;
+  cursoId: any;
   showModal: boolean = false;
-  constructor(private th: TeacherService,
-    private router: Router) { }
 
-  ngOnInit(): void {
+  constructor(private th: TeacherService, private router: Router, private route: ActivatedRoute) { }
+
+  async ngOnInit(): Promise<void> {
+    this.userId = sessionStorage.getItem('idUser');
+    this.cursoId = this.route.snapshot.paramMap.get('cursoId');
+    await this.getPruebas();
   }
 
-  activeView: string = 'general';
-
-  setActiveView(view: string) {
-    this.activeView = view;
+  async getPruebas() {
+    const db = getFirestore();
+    const querySnapshot = await getDocs(collection(db, `users/${this.userId}/cursos/${this.cursoId}/pruebas`));
+    querySnapshot.forEach((doc) => {
+      this.pruebas.push({ id: doc.id, ...doc.data() });
+    });
   }
 
-  logout()
-  {
+  logout() {
     this.th.logout()
     .then(() => {
       this.router.navigate(['/auth']);
@@ -38,5 +46,4 @@ export class CurseDetailComponent implements OnInit {
   closeModal() {
     this.showModal = false;
   }
-
 }

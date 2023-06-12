@@ -10,7 +10,7 @@ const routes: Routes = [{
   path: '',
   children: [
     { path: 'cursos', component: CursesComponent },
-    { path: 'cursos/detail', component: CurseDetailComponent },
+    { path: 'cursos/:cursoId/detail', component: CurseDetailComponent },
     { path: 'cursos/detail/test', component: CurseDetailTestComponent },
     { path: 'evaluaciones', component: EvaluationsComponent },
     { path: 'evaluaciones/:evaluacionId/detail', component: EvaluationsDetailComponent },
