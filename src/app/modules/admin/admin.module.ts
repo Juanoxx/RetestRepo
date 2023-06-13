@@ -6,18 +6,31 @@ import { ManagementTeachersComponent } from './pages/management-teachers/managem
 import { ManagementStudentsComponent } from './pages/management-students/management-students.component';
 import { TeacherRoutingModule } from '../teacher/teacher-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
-
+import { DialogComponent } from './pages/management-teachers/dialog/dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     ManagementTeachersComponent,
-    ManagementStudentsComponent
+    ManagementStudentsComponent,
+    DialogComponent,
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     TeacherRoutingModule,
-    SharedModule
+    SharedModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatSelectModule,
+    ReactiveFormsModule
   ]
 })
 export class AdminModule { }

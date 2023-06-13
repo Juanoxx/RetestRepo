@@ -1,0 +1,33 @@
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <h2>Añadir usuario</h2>
+    <mat-form-field>
+        <input matInput placeholder="Domicilio" required formControlName="domicilio">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="Correo" required formControlName="email">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="Nombre" required formControlName="nombre">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="Apellido" required formControlName="apellido">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="Contraseña" required type="password" formControlName="password">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-select placeholder="Rol" required formControlName="rol">
+            <mat-option *ngFor="let role of roles" [value]="role">{{role}}</mat-option>
+        </mat-select>
+    </mat-form-field>    
+    <mat-form-field>
+        <input matInput placeholder="RUT" required formControlName="rut">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="Teléfono" required type="tel" formControlName="telefono">
+    </mat-form-field>
+    <div>
+        <button mat-button (click)="onNoClick()">Cancelar</button>
+        <button mat-button color="primary" (click)="onSubmit()" type="button">Crear</button>
+    </div>
+</form>

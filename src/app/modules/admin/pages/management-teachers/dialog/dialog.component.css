@@ -423,14 +423,3 @@ main{
     display: flex;
     flex-direction: row;
 }
-
-.mat-button-sm {
-    min-width: 40px;
-    min-height: 25px;
-    padding: 3px 7px;
-    font-size: 12px;
-    width: 20%;
-    margin-top: 10px;
-    background-color:#7BBB54 ;
-  }
-  

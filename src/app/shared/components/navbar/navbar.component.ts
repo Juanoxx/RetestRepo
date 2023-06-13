@@ -40,7 +40,7 @@ export class NavbarComponent implements OnInit {
   createUser() {
     const user = {
       domicilio: 'Apolo Xlll 1641',
-      email: 'juantest@gmail.cl',
+      email: 'juanteste@gmail.cl',
       first_name: 'Juan',
       last_name: 'Arredondo',
       password: 'hashhash',
