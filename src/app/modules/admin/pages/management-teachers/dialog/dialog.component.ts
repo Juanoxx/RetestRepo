@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, Inject, Optional } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { TeacherService } from 'src/app/services/teacher.service';
+import { AdminService } from 'src/app/services/admin.service'; // Asegúrate de importar tu servicio de administrador aquí
 
 @Component({
   selector: 'app-dialog',
@@ -11,11 +11,13 @@ import { TeacherService } from 'src/app/services/teacher.service';
 export class DialogComponent{
   roles = ['student', 'teacher', 'admin'];
   userForm: FormGroup;
+  adminService: AdminService; // Agrega una variable para el servicio de administrador
 
   constructor(
     public dialogRef: MatDialogRef<DialogComponent>,
-    private teacherService: TeacherService // inyecta tu servicio aquí
+    @Optional() @Inject(MAT_DIALOG_DATA) public data: any // Inyecta los datos pasados al diálogo aquí
   ) {
+    this.adminService = data.adminService; // Asigna el servicio de administrador inyectado
     this.userForm = new FormGroup({
       'domicilio': new FormControl('', Validators.required),
       'email': new FormControl('', [Validators.required, Validators.email]),
@@ -36,12 +38,12 @@ export class DialogComponent{
     console.log(this.userForm)
     if (this.userForm.valid) {
       console.log(this.userForm.value); // Esto imprimirá los valores del formulario en la consola
-      this.teacherService.createUser(this.userForm.value)
+      this.adminService.createUser(this.userForm.value) // Usa el servicio de administrador aquí
       .then(() => {
         console.log('Usuario creado exitosamente.')
         this.dialogRef.close();
       })
-        .catch(error => console.log(error));
+      .catch(error => console.log(error));
     } else {
       console.log("Formulario no válido");
     }

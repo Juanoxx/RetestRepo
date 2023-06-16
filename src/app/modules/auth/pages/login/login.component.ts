@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { getAuth, onAuthStateChanged } from '@angular/fire/auth';
 import { Firestore } from 'firebase/firestore';
 import { doc, getDoc, getFirestore } from '@angular/fire/firestore';
+import { AdminService } from 'src/app/services/admin.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -18,7 +19,7 @@ export class LoginComponent implements OnInit {
   auth = getAuth();
 
   firestore: Firestore;
-  constructor(private th: TeacherService, private router: Router, private cd: ChangeDetectorRef) { 
+  constructor(private th: TeacherService, private router: Router, private cd: ChangeDetectorRef, private admin: AdminService) { 
     this.formReg = new FormGroup({
       email: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required)
@@ -33,11 +34,11 @@ export class LoginComponent implements OnInit {
 
   login() {
     console.log(this.formReg.value);
-    this.th.login(this.formReg.value)
+    this.admin.login(this.formReg.value)
     .then(async (response) => {
         console.log(response);
         if (response && response.user) {
-          // Aquí el usuario se ha autenticado correctamente
+          
           // Recupera el rol del usuario
           const userRole = await getDoc(doc(this.firestore, `users/${response.user.uid}`));
 
@@ -66,5 +67,6 @@ export class LoginComponent implements OnInit {
         this.cd.detectChanges(); // Agrega esta línea
       });
   }
+
 
 }

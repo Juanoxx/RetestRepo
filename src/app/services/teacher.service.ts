@@ -14,13 +14,16 @@ export class TeacherService {
     this.firestore = getFirestore();
   }
 
-  // Crear un usuario en Firestore
+  // Crear un usuario en Firestore sin iniciar sesión con él
   async createUser(user: any) {
     // Primero, crea el usuario en Firebase Authentication.
-    const credential = await createUserWithEmailAndPassword(this.auth, user.email, user.password);
+    const { user: newUser } = await createUserWithEmailAndPassword(this.auth, user.email, user.password);
 
-    // Luego, crea un documento en la colección 'users' con el mismo uid.
-    return setDoc(doc(this.firestore, 'users', credential.user.uid), { ...user, uid: credential.user.uid });
+    // Luego, cierra la sesión de ese usuario.
+    await signOut(this.auth);
+
+    // Finalmente, crea un documento en la colección 'users' con el mismo uid.
+    return setDoc(doc(this.firestore, 'users', newUser.uid), { ...user, uid: newUser.uid });
   }
 
   async getCursos(userId: any) {
