@@ -35,7 +35,7 @@
                 <a *ngFor="let curso of cursos" [routerLink]="['/teacher/cursos', curso.id, 'detail']">
                     <div class="webapp_grid_class">
                       <span>{{ curso.year }}</span>
-                      <h3>{{ curso.subject }}</h3>
+                      <h3 style="text-align: center;">{{ curso.subject }}</h3>
                       <span>{{ curso.curse }}</span>
                       <span>{{ curso.students }}</span>
                       <span>{{ curso.actives }}</span>

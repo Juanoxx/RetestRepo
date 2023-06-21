@@ -1,8 +1,13 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
 
-
-body {
+body{
     font-family: 'Poppins', sans-serif;
 }
+
 :host {
     --white: #FFFFFF;
     --black: #000000;
@@ -21,7 +26,8 @@ body {
     --sm: .8em;
     --md: 1em;
     --lg: 2em;
-}
+  }
+
 .tag{
     font-size: var(--tag);
     color:var(--rcyan);
@@ -139,6 +145,21 @@ a {
     font-weight: 600;
 }
 
+.header_nav .header_tool .header_LogOut{
+    position: relative;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    height: 80%;
+    width: 150px;
+    padding: 0 15 0 15;
+    background-color: var(--rgreen);
+    border-radius: 25px;
+    color: var(--white);
+    font-weight: 600;
+    margin-right: 30px;
+}
+
 .header_nav .header_tool .header_icon img{
     height: 50%;
 
@@ -191,8 +212,6 @@ aside ul li{
     position: flex;
     justify-content: center;
     text-align: center;
-    font-weight: 600;
-    text-decoration: none;
 }
 
 aside ul li a:hover{
@@ -201,8 +220,16 @@ aside ul li a:hover{
     transition: .2s;
 }
 
+aside ul li a{
+    color: var(--rblack);
+    font-weight: 600;
+    text-decoration: none;
+    
+}
+
 .aside_active a{
     color: var(--rgreen);
+
 }
 
 /* main */
@@ -223,7 +250,11 @@ main{
     right: 0;
     top: 0;
     padding-top: 60px;
-    background-color: var(--text-input-field);
+}
+
+.main_student{
+    padding-left: 15%;
+    padding-right: 15%;
 }
 
 .main_nav{
@@ -314,6 +345,29 @@ main{
     overflow: scroll;
     border-radius: 8px;
     overflow-x: hidden;
+    height: 75%;
+    grid-template-rows: repeat(11, 32px);
+
+}
+.webappstudent{
+    width: 100%;
+    height: max-content;
+    max-height: 80vh;
+    position: relative;
+    background-color: var(--text-input-field);
+    display: grid;
+    border: 1px solid var(--very-light-pink);
+    overflow: scroll;
+    border-radius: 8px;
+    overflow-x: hidden;
+    height: 75%;
+    grid-template-rows: repeat(11, 32px);
+
+}
+
+.class_view{
+    padding-left: 5%;
+    padding-right: 5%;
 
 }
 
@@ -324,6 +378,15 @@ main{
     width: 100%;
     background-color: var(--white);
     padding: 4px 0 4px 0;
+}
+
+#grid_student{
+    grid-template-columns: 10% 50% 10% 10% 10% 10%;
+
+}
+
+#grid_classroom{
+    grid-template-columns: 15% 85%;
 }
 
 .webapp_header_grid_class{
@@ -411,15 +474,53 @@ main{
     margin: auto;
 }
 
+
+.webapp_button_student {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.centered-button {
+    position: relative;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 150px;
+    padding: 0 15 0 15;
+    background-color: var(--rgreen);
+    border: none;
+    border-radius: 15px;
+    color: var(--white);
+    font-weight: 600;
+    margin-right: 30px;
+    font-size: var(--md);
+    font-family: 'Poppins', sans-serif;
+    transition: background-color 0.3s ease;
+}
+
+.centered-button:hover {
+    background-color: var(--rcyan); /* Color de fondo cuando se pasa el cursor */
+  }
+
+.btn_desabilitado{
+    background-color: var(--very-light-pink);
+}
+
+
 .curso{
-    width: 50%;
+    width: 40%;
 }
 
 .curso_alumno{
-    width: 50%;
+    width: 60%;
     margin-left: 20px;
 }
 .curso_panel{
     display: flex;
     flex-direction: row;
 }
+

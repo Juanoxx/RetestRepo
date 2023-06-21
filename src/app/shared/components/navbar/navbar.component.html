@@ -6,17 +6,14 @@
             <li *ngIf="userRole === 'teacher'" [routerLinkActive]="['header_tag_active']" class="header_tag_item"><a routerLink="/teacher/cursos">Mis Cursos</a>
             </li>
             <li *ngIf="userRole === 'teacher'" [routerLinkActive]="['header_tag_active']" class="header_tag_item"><a routerLink="/teacher/evaluaciones">Mis Evaluaciones</a></li>
-            <li *ngIf="userRole === 'student'" [routerLinkActive]="['header_tag_active']" class="header_tag_item"><a routerLink="/student/evaluaciones">Mis Evaluaciones</a></li>
-            <li *ngIf="userRole === 'admin'" [routerLinkActive]="['header_tag_active']" class="header_tag_item"><a routerLink="/admin/teachers">Administración Profesores</a></li>
-            <li *ngIf="userRole === 'admin'" [routerLinkActive]="['header_tag_active']" class="header_tag_item"><a routerLink="/admin/students">Administración Estudiantes</a></li>
+            <li *ngIf="userRole === 'admin'" [routerLinkActive]="['header_tag_active']" class="header_tag_item"><a routerLink="/admin/teachers">Administración</a></li>
         </ul>
         <ul class="header_tool">
-            <li class="header_create" style="cursor: pointer;">Crear</li>
+            <li *ngIf="userRole === 'admin' || userRole === 'teacher'" class="header_create" style="cursor: pointer;">Crear</li>
             <li class="header_create" style="cursor: pointer;" (click)="logout()">Cerrar sesión</li>
-            <button *ngIf="userRole === 'teacher'" (click)="createUser()">Crear Usuario</button>
-            <button *ngIf="userRole === 'teacher'" (click)="addPrueba()">Crear prueba</button>
-            <button *ngIf="userRole === 'teacher'" (click)="addAlumno()">Crear alumno</button>
-            <button *ngIf="userRole === 'teacher'" (click)="addCurso()">Crear curso</button>
-        </ul>            
+            <button *ngIf="userRole === 'admin'" (click)="addPrueba()">Crear prueba</button>
+            <button *ngIf="userRole === 'admin'" (click)="addAlumno()">Crear alumno</button>
+            <button *ngIf="userRole === 'admin'" (click)="addCurso()">Crear curso</button>
+        </ul>                   
     </nav>
 </header>

@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { ManagementTeachersComponent } from './pages/management-teachers/management-teachers.component';
-import { ManagementStudentsComponent } from './pages/management-students/management-students.component';
 import { TeacherRoutingModule } from '../teacher/teacher-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { DialogComponent } from './pages/management-teachers/dialog/dialog.component';
@@ -17,7 +16,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     ManagementTeachersComponent,
-    ManagementStudentsComponent,
     DialogComponent,
   ],
   imports: [

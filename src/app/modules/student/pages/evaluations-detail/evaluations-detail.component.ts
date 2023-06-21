@@ -3,11 +3,11 @@ import { TeacherService } from '../../../../services/teacher.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-evaluations',
-  templateUrl: './evaluations.component.html',
-  styleUrls: ['./evaluations.component.css']
+  selector: 'app-evaluations-detail',
+  templateUrl: './evaluations-detail.component.html',
+  styleUrls: ['./evaluations-detail.component.css']
 })
-export class EvaluationsComponent implements OnInit {
+export class EvaluationsDetailComponent implements OnInit {
 
   constructor(private th: TeacherService,
     private router: Router) { }

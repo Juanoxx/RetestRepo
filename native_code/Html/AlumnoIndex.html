@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -6,10 +8,20 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600;700&display=swap" rel="stylesheet">
-</head>
 
+    <link rel="stylesheet" href="../CSS/webApp.css">
+</head>
 <body>
-    <app-navbar></app-navbar>
+    <header>
+        <nav class="header_nav">
+            <ul class="header_tag">
+                <li class="header_logo header_tag_item"><img src="../IMG/logo-green.png" alt="ReTest+ logo color"></li>
+          </ul>
+            <ul class="header_tool">
+                <li class="header_LogOut">Cerrar Sesion</li>
+            </ul>
+        </nav>
+    </header>
     <main class="main_student">
         <nav class="main_nav" >
        </nav>
@@ -26,7 +38,7 @@
             </div>
 
             <div class="webapp_grid" id="grid_student">
-                <img class="test_online" src="../../../../../assets/IMG//Iconos/greenCircle_icon.svg" alt="Circulo verde">
+                <img class="test_online" src="../IMG/Iconos/greenCircle_icon.svg" alt="Circulo verde">
                 <h3>Prueba de geometría: Angulos</h3>
                 <span>3°A</span>
                 <span>2</span>
@@ -34,7 +46,7 @@
                 <span> 5,8</span>
             </div>
             <div class="webapp_grid" id="grid_student">
-                <img class="test_online" src="../../../../../assets/IMG//Iconos/redCircle_icon.svg" alt="Circulo rojo">
+                <img class="test_online" src="../IMG/Iconos/redCircle_icon.svg" alt="Circulo rojo">
                 <h3>Prueba de geometría: Plano Cartesiano</h3>
                 <span>3°A</span>
                 <span>2</span>
@@ -44,8 +56,9 @@
         </section>
         <section class="webapp_button_student">
             <button class="centered-button btn_desabilitado">Reintentar</button>
-            <a [routerLink]="['/student/evaluaciones/detail']"><button class="centered-button">Revisar</button></a>
+            <a href="../Html/AlumnoVistaPrueba.html"><button class="centered-button">Revisar</button></a>
           </section>
         
     </main>
 </body>
+</html>

@@ -9,6 +9,6 @@ function submitEvent(event){
     const userId = document.querySelector('#userId');
     const userPassword = document.querySelector('#userPassword');
     if (userId.value == "demo" && userPassword.value == "1234"){
-            location.href = "../Html/evaluaciones.html";
+            location.href = "../Html/cursos.html";
     }else { mesaggeWrong.classList.remove('inactive')};
 }
