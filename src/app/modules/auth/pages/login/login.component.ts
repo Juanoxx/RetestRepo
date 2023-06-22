@@ -64,7 +64,7 @@ export class LoginComponent implements OnInit {
       .catch((error) => {
         console.error(error);
         this.showError = true;
-        this.cd.detectChanges(); // Agrega esta línea
+        this.cd.detectChanges(); 
       });
   }
 

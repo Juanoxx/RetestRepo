@@ -1,0 +1,37 @@
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <h2>Añadir curso</h2>
+    <mat-form-field>
+        <mat-select placeholder="Colegio" required formControlName="colegio">
+            <mat-option *ngFor="let colegio of colegios" [value]="colegio.id">{{colegio.nombre}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-select placeholder="Profesor" required formControlName="profesor">
+            <mat-option *ngFor="let profesor of profesores" [value]="profesor.id">{{profesor.nombre}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-select placeholder="Nivel" required formControlName="nivel">
+            <mat-option *ngFor="let nivel of niveles" [value]="nivel">{{nivel}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-select placeholder="Sección" required formControlName="seccion">
+            <mat-option *ngFor="let seccion of secciones" [value]="seccion">{{seccion}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-select placeholder="Año" required formControlName="anio">
+            <mat-option *ngFor="let ano of anos" [value]="ano">{{ano}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-select placeholder="Asignatura" required formControlName="asignatura">
+            <mat-option *ngFor="let asignatura of asignaturas" [value]="asignatura">{{asignatura}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <div>
+        <button mat-button (click)="onNoClick()">Cancelar</button>
+        <button mat-button color="primary" (click)="onSubmit()" type="button">Crear</button>
+    </div>
+</form>

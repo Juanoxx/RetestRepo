@@ -6,12 +6,14 @@
     <mat-form-field>
         <input matInput placeholder="Correo" required formControlName="email">
     </mat-form-field>
+    <p></p>
     <mat-form-field>
         <input matInput placeholder="Nombre" required formControlName="nombre">
     </mat-form-field>
     <mat-form-field>
         <input matInput placeholder="Apellido" required formControlName="apellido">
     </mat-form-field>
+    <p></p>
     <mat-form-field>
         <input matInput placeholder="Contraseña" required type="password" formControlName="password">
     </mat-form-field>
@@ -19,13 +21,20 @@
         <mat-select placeholder="Rol" required formControlName="rol">
             <mat-option *ngFor="let role of roles" [value]="role">{{role}}</mat-option>
         </mat-select>
-    </mat-form-field>    
+    </mat-form-field>   
+    <p></p>   
     <mat-form-field>
         <input matInput placeholder="RUT" required formControlName="rut">
     </mat-form-field>
     <mat-form-field>
         <input matInput placeholder="Teléfono" required type="tel" formControlName="telefono">
     </mat-form-field>
+    <p></p>
+    <mat-form-field *ngIf="userForm?.get('rol')?.value === 'student' || userForm?.get('rol')?.value === 'teacher'">
+        <mat-select placeholder="Colegio" required formControlName="colegio">
+            <mat-option *ngFor="let colegio of colegios" [value]="colegio.id">{{colegio.nombre}}</mat-option>
+        </mat-select>
+    </mat-form-field>  
     <div>
         <button mat-button (click)="onNoClick()">Cancelar</button>
         <button mat-button color="primary" (click)="onSubmit()" type="button">Crear</button>

@@ -12,11 +12,15 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DialogColegioComponent } from './pages/management-teachers/dialog-colegio/dialog-colegio.component';
+import { DialogCursoComponent } from './pages/management-teachers/dialog-curso/dialog-curso.component';
 
 @NgModule({
   declarations: [
     ManagementTeachersComponent,
     DialogComponent,
+    DialogColegioComponent,
+    DialogCursoComponent,
   ],
   imports: [
     CommonModule,

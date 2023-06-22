@@ -1,0 +1,20 @@
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <h2>Añadir colegio</h2>
+    <mat-form-field>
+        <input matInput placeholder="Nombre Colegio" required formControlName="nombre">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-select placeholder="Region" required formControlName="region" (selectionChange)="onRegionChange($event.value)">
+            <mat-option *ngFor="let region of regiones" [value]="region.nombre">{{region.nombre}}</mat-option>
+        </mat-select>
+    </mat-form-field> 
+    <mat-form-field>
+        <mat-select placeholder="Provincea" required formControlName="provincea">
+            <mat-option *ngFor="let provincea of provinceas" [value]="provincea">{{provincea}}</mat-option>
+        </mat-select>
+    </mat-form-field> 
+    <div>
+        <button mat-button (click)="onNoClick()">Cancelar</button>
+        <button mat-button color="primary" (click)="onSubmit()" type="button">Crear</button>
+    </div>
+</form>

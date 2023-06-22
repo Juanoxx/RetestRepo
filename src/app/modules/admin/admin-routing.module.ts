@@ -3,8 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { ManagementTeachersComponent } from './pages/management-teachers/management-teachers.component';
 
 const routes: Routes = [
-  { path: 'teachers', component: ManagementTeachersComponent },
-  { path: '**', redirectTo: 'teachers', pathMatch: 'full' }
+  { path: 'home', component: ManagementTeachersComponent },
+  { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];
 
 @NgModule({
