@@ -45,6 +45,7 @@ export class LoginComponent implements OnInit {
           // Guarda el rol en sessionStorage
           sessionStorage.setItem('userRole', userRole.data()?.['rol']);
           sessionStorage.setItem('idUser', userRole.data()?.['uid']);
+          sessionStorage.setItem('colegioId', userRole.data()?.['colegio']);
           switch (userRole.data()?.['rol']) {
             case 'teacher':
               this.router.navigate(['/teacher/cursos']);

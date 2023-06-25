@@ -15,7 +15,7 @@
         <main>
             <nav class="main_nav">
                 <ul>
-                    <li id="main_tag_reciente" class="main_tag active_tag"><a href="./cursos.html">Mis Cursos</a></li>
+                    <li id="main_tag_reciente" class="main_tag active_tag"><a href="./teacher/cursos">Mis Cursos</a></li>
                 </ul>
                 <div id="webapp_search" class="main_search"><input id="search_box" placeholder="Buscar" name="Buscar"
                         type="text" class="webapp-search"></div>
@@ -34,9 +34,9 @@
 
                 <a *ngFor="let curso of cursos" [routerLink]="['/teacher/cursos', curso.id, 'detail']">
                     <div class="webapp_grid_class">
-                      <span>{{ curso.year }}</span>
-                      <h3 style="text-align: center;">{{ curso.subject }}</h3>
-                      <span>{{ curso.curse }}</span>
+                      <span>{{ curso.anio }}</span>
+                      <h3 style="text-align: center;">{{ curso.asignatura }}</h3>
+                      <span>{{ curso.nivel }} - {{ curso.seccion}}</span>
                       <span>{{ curso.students }}</span>
                       <span>{{ curso.actives }}</span>
                       <span>{{ curso.promedio }}</span>

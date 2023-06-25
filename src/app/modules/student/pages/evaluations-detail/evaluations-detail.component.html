@@ -1,20 +1,9 @@
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio-ReTest+</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600;700&display=swap" rel="stylesheet">
-</head>
-
-<body>
+<body (click)="resetSelection($event)">
     <app-navbar></app-navbar>
     <main class="main_student">
-        <nav class="main_nav" >
-       </nav>
+        <nav class="main_nav">
+        </nav>
         <section class="webapp webappstudent">
-
             <div class="webapp_header_grid" id="grid_student">
                 <h2 class="webapp_header">Estado</h2>
                 <h2 class="webapp_header">Nombre Prueba</h2>
@@ -22,30 +11,28 @@
                 <h2 class="webapp_header">Intento</h2>
                 <h2 class="webapp_header">Realización</h2>
                 <h2 class="webapp_header">Nota</h2>
-
             </div>
 
-            <div class="webapp_grid" id="grid_student">
-                <img class="test_online" src="../../../../../assets/IMG/Iconos/greenCircle_icon.svg" alt="Circulo verde">
-                <h3>Prueba de geometría: Angulos</h3>
-                <span>3°A</span>
-                <span>1</span>
-                <span> 01-01-2020</span>
-                <span> 5,8</span>
-            </div>
-            <div class="webapp_grid" id="grid_student">
-                <img class="test_online" src="../../../../../assets/IMG/Iconos/greenCircle_icon.svg" alt="Circulo verde">
-                <h3>Prueba de geometría: Angulos</h3>
-                <span>3°A</span>
-                <span>2</span>
-                <span> 01-02-2020</span>
-                <span> 5,9</span>
+            <div *ngFor="let test of tests" (click)="selectTest($event, test)" class="webapp_grid" id="grid_student"
+                [ngClass]="{'selected-test': selectedTest === test}" style="cursor: pointer;">
+                <img class="test_online"
+                    [src]="test.status === 'green' ? '../../../../../assets/IMG/Iconos/greenCircle_icon.svg' : '../../../../../assets/IMG/Iconos/redCircle_icon.svg'"
+                    alt="Estado de prueba">
+                <h3>{{ test.testName }}</h3>
+                <span>{{ test.course }}</span>
+                <span>{{ test.attempts }}</span>
+                <span>{{ test.date }}</span>
+                <span>{{ test.grade }}</span>
             </div>
         </section>
+
         <section class="webapp_button_student">
-            <button class="centered-button">Ver</button>
+            <a [routerLink]="['/student/prueba']">
+                <button style="cursor: pointer;" [ngStyle]="{'background-color': selectedTest ? 'green' : 'gray'}"
+                    class="centered-button">Ver</button>
+            </a>
+
             <a [routerLink]="['/student/evaluaciones']" class="centered-button">Volver</a>
-          </section>
-        
+        </section>
     </main>
 </body>

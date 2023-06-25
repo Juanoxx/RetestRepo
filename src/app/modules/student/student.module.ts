@@ -6,12 +6,14 @@ import { EvaluationsComponent } from './pages/evaluations/evaluations.component'
 import { TeacherRoutingModule } from '../teacher/teacher-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { EvaluationsDetailComponent } from './pages/evaluations-detail/evaluations-detail.component';
+import { PruebaComponent } from './pages/prueba/prueba.component';
 
 
 @NgModule({
   declarations: [
     EvaluationsComponent,
-    EvaluationsDetailComponent
+    EvaluationsDetailComponent,
+    PruebaComponent
   ],
   imports: [
     CommonModule,

@@ -523,3 +523,7 @@ main{
     display: flex;
     flex-direction: row;
 }
+
+.selected-test {
+    background-color: rgb(183, 243, 206);
+}

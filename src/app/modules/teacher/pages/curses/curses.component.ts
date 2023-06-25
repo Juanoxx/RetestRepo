@@ -26,6 +26,7 @@ export class CursesComponent implements OnInit {
     querySnapshot.forEach((doc) => {
       this.cursos.push({ id: doc.id, ...doc.data() });
     });
+    console.log(this.cursos)
   }
 
   logout() {

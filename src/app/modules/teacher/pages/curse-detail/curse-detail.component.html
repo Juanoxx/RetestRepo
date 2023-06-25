@@ -10,26 +10,13 @@
 </head>
 
 <body>
-<div id="formNewTest" class="createNewTest" *ngIf="showModal">
-        <h2 class="title">Crear una nueva evaluación</h2>
-        <label class="subtitle" for="testName">Nombre de Evaluación</label>
-        <input id="testName" type="text" placeholder="Prueba de Geometría">
-        <label class="subtitle" for="className">Curso</label>
-        <input id="className" type="text" placeholder="3°A">
-        <label class="subtitle" for="newDocument">Documento</label>
-        <input id="newDocument" type="text" placeholder="Arrastra el documento aquí">
-        <div class="buttons">
-            <button class="rButton" id="cancel" value="cancel" (click)="closeModal()">Cancelar</button>
-            <button class="rButton" id="upload" type="submit" value="Upload">Subir Archivo</button>
-        </div>
-    </div>
     <app-navbar></app-navbar>
     <app-sidebar></app-sidebar>
     <main>
         <nav class="main_nav">
             <ul>
-                <li id="main_tag_reciente" class="main_tag active_tag"><a href="teacher/cursos">Mis Cursos</a></li>
-                <li id="main_tag_reciente" class="main_tag active_tag"><a href="teacher/cursos/detail">2023 Matemática
+                <li id="main_tag_reciente" class="main_tag active_tag"><a href="./cursos.html">Mis Cursos</a></li>
+                <li id="main_tag_reciente" class="main_tag active_tag"><a href="./matematica.html">2023 Matemática
                         3°A</a></li>
             </ul>
             <div id="webapp_search" class="main_search"><input id="search_box" placeholder="Buscar" name="Buscar"
@@ -37,29 +24,39 @@
         </nav>
 
         <div class="curso_panel">
-            <section class="webapp">
+            <section class="webapp curso">
 
-                <div class="webapp_header_grid">
+                <div class="webapp_header_grid" id="grid_classroom">
                     <h2 class="webapp_header">Estado</h2>
                     <h2 class="webapp_header">Nombre Prueba</h2>
-                    <h2 class="webapp_header">Total</h2>
-                    <h2 class="webapp_header">Curso</h2>
-                    <h2 class="webapp_header">PC</h2>
-                    <h2 class="webapp_header">PN</h2>
+                </div>
+                <a *ngFor="let prueba of pruebas; let i = index" (click)="getStudentsForPrueba(i)">
+                    <span class="webapp_grid webapp_grid_alumno">
+                        <img class="test_online" src="../../../../../assets/IMG/Iconos/greenCircle_icon.svg"
+                            alt="Circulo verde">
+                    </span>
+                    <span>{{prueba.nombre}}</span>
+                </a>
+            </section>
+
+            <section class="webapp curso_alumno">
+
+                <div class="webapp_header_grid_alumno">
+                    <h2 class="webapp_header">N°</h2>
+                    <h2 class="webapp_header">Nombre</h2>
+                    <h2 class="webapp_header">Nota</h2>
+                    <h2 class="webapp_header">Repeticiones</h2>
                     <h2 class="webapp_header">Alerta</h2>
                 </div>
-
-                <a *ngFor="let prueba of pruebas" [routerLink]="['/teacher/cursos', cursoId, 'detail', prueba.id]">
-                    <div class="webapp_grid">
-                      <img class="test_online" src="../../../../../assets/IMG/Iconos/greenCircle_icon.svg" alt="Circulo verde">
-                      <h3>{{ prueba.name_test }}</h3>
-                      <span>{{ prueba.total_students }}</span>
-                      <span>{{ prueba.curse }}</span>
-                      <span>{{ prueba.pc }}</span>
-                      <span>{{ prueba.pn }}</span>
-                      <img class="alert" src="../../../../../assets/IMG/Iconos/yellowCircle_icon.svg" alt="Circulo Amarillo">
+                <a *ngFor="let student of students; let i = index">
+                    <div class="webapp_grid webapp_grid_alumno">
+                        <span>{{i + 1}}</span>
+                        <span>{{student.nombre}} {{student.apellido}}</span>
+                        <span>c</span>
+                        <span>d</span>
+                        <span>e</span>
                     </div>
-                  </a>
+                </a>
             </section>
         </div>
     </main>
