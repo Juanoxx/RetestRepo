@@ -20,7 +20,7 @@ import { DialogCursoComponent } from './pages/management-teachers/dialog-curso/d
     ManagementTeachersComponent,
     DialogComponent,
     DialogColegioComponent,
-    DialogCursoComponent,
+    DialogCursoComponent
   ],
   imports: [
     CommonModule,

@@ -8,7 +8,7 @@ body{
     font-family: 'Poppins', sans-serif;
 }
 
-:root {
+:host {
     --white: #FFFFFF;
     --black: #000000;
     --rblack: #2e2e2e;
@@ -580,7 +580,7 @@ main{
   .webapp_header_grid_prueba_base{
     position: relative;
     display: grid;
-    grid-template-columns: 10% 90%;
+    grid-template-columns: 10% 60% 30%;
     width: 100%;
     background-color: var(--white);
     padding: 4px 0 4px 0;
@@ -669,16 +669,7 @@ main{
   .titulo-barra:hover {
     background-color: #e0e0e0;
   }
-  
-  .icono-flecha {
-    width: 16px;
-    height: 16px;
-    background-image: url('ruta/a/tu/icono-flecha.png');
-    background-repeat: no-repeat;
-    background-position: center;
-    transition: transform 0.3s ease-in-out;
-  }
-  
+
   .icono-flecha.abierta {
     transform: rotate(180deg);
   }

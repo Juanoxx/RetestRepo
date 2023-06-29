@@ -1,0 +1,136 @@
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio-ReTest+</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <app-navbar></app-navbar>
+
+    <aside>
+        <div class="filtro">
+            <h3>Curso</h3>
+            <select [(ngModel)]="selectedCursoIndex" (change)="getObjetivosAprendizaje(cursos[selectedCursoIndex]?.nivel)">
+                <option selected disabled value="">Seleccionar curso</option>
+                <option *ngFor="let curso of cursos; let i = index" [value]="i">{{curso.nivel}} - {{curso.seccion}}</option>
+              </select>                           
+          </div>          
+    
+        <div class="filtro">
+            <h3>Asignatura</h3>
+            <select>
+                <option selected disabled>Seleccionar asignatura</option>
+                <option *ngFor="let asignatura of asignaturas" [value]="asignatura">{{asignatura}}</option>
+            </select>            
+        </div>
+        
+    
+        <a href="#"><button class="btn_enviar">Enviar</button></a>
+    </aside>
+
+
+    <main>
+        <!--
+            <div class="upload-container">
+            <h3>Subir Imagen</h3>
+            <div class="filtro">
+                <h3>ID del Curso</h3>
+                <input type="text" [(ngModel)]="selectedId">
+            </div>
+            
+            <div class="filtro">
+                <h3>Asignatura (Nivel)</h3>
+                <input type="text" [(ngModel)]="selectedNivel">
+            </div>
+            <input type="file" #fileInput>
+            <button (click)="uploadImage()">Subir imagen</button>
+        </div>
+        --> 
+        <div class="filtro">
+            <h3>Nombre de Evaluación</h3>
+            <input type="text" [(ngModel)]="nombreEvaluacion" placeholder="Escribe el nombre de la evaluación..." style="width: 100%; height: 30px;">
+          </div>
+          
+          
+          <div class="filtro">
+            <h3>Obj. Aprendizaje</h3>
+            <select [(ngModel)]="selectedObjetivo" (change)="getPreguntas(cursos[selectedCursoIndex]?.nivel)" style="width: 100%; height: 30px;" >
+                <option value="" disabled selected>Selecciona un objetivo de aprendizaje</option>
+                <option *ngFor="let objetivo of objetivosAprendizaje" [value]="objetivo.id">{{objetivo.descripcion}}</option>
+            </select>                          
+        </div>
+               
+          
+          
+        <div class="curso_panel">
+            <section class="webapp_creador prueba">
+                <div class="webapp_header_grid_prueba_base titulo_prueba">
+                  <h2 class="webapp_header">N°</h2>
+                  <h2 class="webapp_header">Pregunta</h2>
+                  <h2 class="webapp_header">Imagen</h2>
+                </div>
+              
+                <div class="webapp_header_grid_prueba_base webapp_pregunta" *ngFor="let pregunta of preguntas; let i = index">
+                  <div class="numero_pregunta"><span>{{ i + 1 }}</span></div>
+                  <div class="numero_pregunta"><h4>{{ pregunta.Pregunta }}</h4></div>
+                  <div class="numero_pregunta">
+                    <img *ngIf="pregunta.url" [src]="pregunta.url" alt="Imagen de la pregunta">
+                  </div>
+                </div>
+              </section>
+              
+              <div class="button-container">
+                <button class="btn-round">
+                  <span class="arrow_right"></span>
+                </button>
+                <button class="btn-round">
+                  <span class="arrow_left"></span>
+                </button>
+            </div>
+            <section class="webapp_creador baseprueba">
+
+                <div class="webapp_header_grid_prueba_base titulo_prueba">
+                    <h2 class="webapp_header">N°</h2>
+                    <h2 class="webapp_header">Pregunta</h2>
+
+                </div>
+
+                <div class="webapp_header_grid_prueba_base webapp_pregunta">
+                    <div class="numero_pregunta"><span>1</span></div>
+                    <div class="numero_pregunta"><h4>En el curso de Juan la razón entre las niñas y los niños del curso es de 7 es a 9, lo que significa que por cada 7 niñas hay ......... niños en el curso.
+                    </h4></div>
+                </div>
+                <div class="webapp_header_grid_prueba_base webapp_pregunta">
+                    <div class="numero_pregunta"><span>2</span></div>
+                    <div class="numero_pregunta"><h4>En la limonada que preparó Francisca la razón entre el jugo y el agua que le puso es de 2 es a 3 (2:3), lo que significa que por cada 2 vasos de jugo le puso …........ vasos de agua.
+                    </h4></div>
+                </div>
+                <div class="webapp_header_grid_prueba_base webapp_pregunta">
+                    <div class="numero_pregunta"><span>3</span></div>
+                    <div class="numero_pregunta"><h4>El motor de una motocicleta no funciona con bencina pura, sino con una mezcla de bencina y aceite, que deben estar en la razón 10:0,5; lo que significa que por 10 litros de bencina hay que echarle ....... litros de aceite.
+                    </h4></div>
+                </div>
+                <div class="webapp_header_grid_prueba_base webapp_pregunta">
+                    <div class="numero_pregunta"><span>4</span></div>
+                    <div class="numero_pregunta"><h4>En un canasto de fruta la razón entre las manzanas y naranjas es de 5 es a 4 (5:4), lo que significa que por cada 4 naranjas hay ......... manzanas.
+                    </h4></div>
+                </div>
+                <div class="webapp_header_grid_prueba_base webapp_pregunta">
+                    <div class="numero_pregunta"><span>5</span></div>
+                    <div class="numero_pregunta"><h4>Las estaturas de Ignacia y la de Javiera están en la razón de 3:4. Si Javiera mide 1,40 m, ¿cuál es la estatura de Ignacia?
+                    </h4></div>
+                </div>
+                <div class="webapp_header_grid_prueba_base webapp_pregunta">
+                    <div class="numero_pregunta"><span>6</span></div>
+                    <div class="numero_pregunta"><h4>Representa la siguiente razón: Repartir 6 pizzas entre 3 amigos.
+
+                    </h4></div>
+                </div>
+              </section>
+        </div>
+    </main>
+</body>

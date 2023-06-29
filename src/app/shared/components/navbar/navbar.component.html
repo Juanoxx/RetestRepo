@@ -1,14 +1,18 @@
 <header>
     <nav class="header_nav">
         <ul class="header_tag">
-            <li class="header_logo header_tag_item"><img src="../../../../../assets/IMG/logo-green.png"
-                    alt="ReTest+ logo color"></li>
-            <li *ngIf="userRole === 'teacher'" [routerLinkActive]="['header_tag_active']" class="header_tag_item"><a routerLink="/teacher/cursos">Mis Cursos</a>
+            <li class="header_logo header_tag_item">
+                <img src="../../../../../assets/IMG/logo-green.png" alt="ReTest+ logo color">
             </li>
-            <li *ngIf="userRole === 'teacher'" [routerLinkActive]="['header_tag_active']" class="header_tag_item"><a routerLink="/teacher/evaluaciones">Mis Evaluaciones</a></li>
+            <li *ngIf="userRole === 'teacher'" [routerLinkActive]="['header_tag_active']" class="header_tag_item">
+                <a routerLink="/teacher/cursos">Mis Cursos</a>
+            </li>
+            <li *ngIf="userRole === 'teacher'" [routerLinkActive]="['header_tag_active']" class="header_tag_item">
+                <a routerLink="/teacher/evaluaciones">Mis Evaluaciones</a>
+            </li>
         </ul>
         <ul class="header_tool">
-            <li *ngIf="userRole === 'admin' || userRole === 'teacher'" class="header_create" style="cursor: pointer;">Crear</li>
+            <li *ngIf="userRole === 'admin' || userRole === 'teacher'" class="header_create" style="cursor: pointer;" routerLink="/teacher/crear">Crear</li>
             <li class="header_create" style="cursor: pointer;" (click)="logout()">Cerrar sesión</li>
             <button *ngIf="userRole === 'admin'" (click)="addPrueba()">Crear prueba</button>
         </ul>                   

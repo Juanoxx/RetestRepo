@@ -5,6 +5,7 @@ import { EvaluationsComponent } from './pages/evaluations/evaluations.component'
 import { CurseDetailComponent } from './pages/curse-detail/curse-detail.component';
 import { CurseDetailTestComponent } from './pages/curse-detail-test/curse-detail-test.component';
 import { EvaluationsDetailComponent } from './pages/evaluations-detail/evaluations-detail.component';
+import { CreateEvaluationComponent } from './pages/create-evaluation/create-evaluation.component';
 
 const routes: Routes = [{
   path: '',
@@ -14,6 +15,7 @@ const routes: Routes = [{
     { path: 'cursos/detail/test', component: CurseDetailTestComponent },
     { path: 'evaluaciones', component: EvaluationsComponent },
     { path: 'evaluaciones/:evaluacionId/detail', component: EvaluationsDetailComponent },
+    { path: 'crear', component: CreateEvaluationComponent },
     { path: '**', redirectTo: 'cursos', pathMatch: 'full' }
   ]
 }];

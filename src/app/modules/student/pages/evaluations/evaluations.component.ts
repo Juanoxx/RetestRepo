@@ -25,7 +25,7 @@ export class EvaluationsComponent implements OnInit {
       course: '3°A',
       attempts: 0,
       date: '01-01-2020',
-      grade: '5,8',
+      grade: '-',
     }
   ]; // Esta es la lista de pruebas a iterar
 

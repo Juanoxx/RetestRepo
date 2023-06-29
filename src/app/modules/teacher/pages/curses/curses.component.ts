@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { TeacherService } from '../../../../services/teacher.service';
-import { Router } from '@angular/router';
 import { getFirestore, collection, getDocs } from "firebase/firestore";
 
 @Component({
@@ -13,7 +11,7 @@ export class CursesComponent implements OnInit {
   cursos: any[] = [];
   userId: any;
 
-  constructor(private th: TeacherService, private router: Router) { }
+  constructor() { }
 
   async ngOnInit(): Promise<void> {
     this.userId = sessionStorage.getItem('idUser');
@@ -26,14 +24,5 @@ export class CursesComponent implements OnInit {
     querySnapshot.forEach((doc) => {
       this.cursos.push({ id: doc.id, ...doc.data() });
     });
-    console.log(this.cursos)
-  }
-
-  logout() {
-    this.th.logout()
-    .then(() => {
-      this.router.navigate(['/auth']);
-    })
-    .catch(error => console.log(error));
   }
 }
