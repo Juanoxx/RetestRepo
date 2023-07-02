@@ -9,7 +9,7 @@ const routes: Routes = [{
   children: [
     { path: 'evaluaciones', component: EvaluationsComponent },
     { path: 'evaluaciones/detail', component: EvaluationsDetailComponent },
-    { path: 'prueba', component: PruebaComponent },
+    { path: 'prueba/:idCurso/:idPrueba/:numIntento', component: PruebaComponent },
     { path: '**', redirectTo: 'evaluaciones', pathMatch: 'full' }
   ]
 }];

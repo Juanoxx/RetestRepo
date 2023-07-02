@@ -7,6 +7,7 @@ import { TeacherRoutingModule } from '../teacher/teacher-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { EvaluationsDetailComponent } from './pages/evaluations-detail/evaluations-detail.component';
 import { PruebaComponent } from './pages/prueba/prueba.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { PruebaComponent } from './pages/prueba/prueba.component';
     CommonModule,
     StudentRoutingModule,
     TeacherRoutingModule,
-    SharedModule
+    SharedModule,
+    FormsModule
   ]
 })
 export class StudentModule { }
