@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from '@angular/fire/auth';
-import { doc, collection, getFirestore, deleteDoc, Firestore, addDoc, setDoc, getDocs, query, where  } from '@angular/fire/firestore';
+import { doc, collection, getFirestore, deleteDoc, Firestore, addDoc, setDoc, getDocs, query, where } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -18,20 +18,20 @@ export class AdminService {
     const cursoRef = await addDoc(collection(colegioRef, 'cursos'), curso);
     curso.id = cursoRef.id;
     await setDoc(doc(colegioRef, 'cursos', cursoRef.id), curso);
-  
+
     // Agrega el curso al usuario correspondiente
     const userRef = doc(this.firestore, 'users', curso.profesor);
     await setDoc(doc(userRef, 'cursos', cursoRef.id), curso);
-  
+
     // Buscar estudiantes que cumplen con el nivel y sección del curso
     const studentsSnapshot = await getDocs(query(collection(this.firestore, 'users'), where('nivel', '==', curso.nivel), where('seccion', '==', curso.seccion), where('rol', '==', 'student')));
-  
+
     // Agrega el curso a cada estudiante encontrado
     studentsSnapshot.docs.forEach(async (docSnapshot) => {
       const studentRef = doc(this.firestore, 'users', docSnapshot.id);
       await setDoc(doc(studentRef, 'cursos', cursoRef.id), curso);
     });
-  
+
     // Añadir la subcolección de alumnos al curso en la colección de colegios
     const alumnosCollectionRef = collection(doc(colegioRef, 'cursos', cursoRef.id), 'alumnos');
     studentsSnapshot.docs.forEach(async (docSnapshot) => {
@@ -52,7 +52,7 @@ export class AdminService {
       };
       await setDoc(doc(alumnosCollectionRef, docSnapshot.id), alumnoData);
     });
-  
+
     return cursoRef;
   }
 
@@ -85,19 +85,37 @@ export class AdminService {
       console.log('entra aquí');
       const colegioRef = doc(this.firestore, 'colegios', user.colegio);
       const cursosSnapshot = await getDocs(query(collection(colegioRef, 'cursos'), where('nivel', '==', user.nivel), where('seccion', '==', user.seccion)));
-      
+
       // Agrega cada curso encontrado al estudiante
       cursosSnapshot.docs.forEach(async (cursoDoc) => {
         const curso = cursoDoc.data();
-        await setDoc(doc(docRef, 'cursos', curso['id']), curso);
+        await setDoc(doc(this.firestore, 'users', user.uid, 'cursos', curso['id']), curso);
 
         // Añade el estudiante a la subcolección 'alumnos' del curso
         await addDoc(collection(doc(colegioRef, 'cursos', cursoDoc.id), 'alumnos'), user);
+
+        // Obtén la referencia de la colección de pruebas para el curso actual
+        const pruebasRef = collection(doc(colegioRef, 'cursos', cursoDoc.id), 'pruebas');
+
+        // Obtén todas las pruebas
+        const pruebasSnapshot = await getDocs(pruebasRef);
+        console.log('pruebaref: ', pruebasRef)
+        console.log('pruebasSnapshot: ', pruebasSnapshot)
+        console.log(!pruebasSnapshot.empty)
+        // Verifica si existen pruebas
+        if (!pruebasSnapshot.empty) {
+          // Itera a través de cada prueba y añádela a la respectiva subcolección 'pruebas' de cada curso del estudiante
+          pruebasSnapshot.docs.forEach(async (pruebaDoc) => {
+            const prueba:any = pruebaDoc.data();
+            console.log(pruebaDoc.data(), prueba, prueba.idPrueba)
+            await setDoc(doc(this.firestore, 'users', user.uid, 'cursos', curso['id'], 'pruebas', prueba['idPrueba']), prueba);
+          });
+        }
       });
     }
 
     return docRef;
-}
+  }
 
 
   async findUserByEmail(email: string) {
@@ -116,7 +134,6 @@ export class AdminService {
   async login(credentials: { email: string, password: string }) {
     try {
       const result = await signInWithEmailAndPassword(this.auth, credentials.email, credentials.password);
-
       return result;
     } catch (error) {
       const user: any = await this.findUserByEmail(credentials.email);
@@ -128,33 +145,51 @@ export class AdminService {
         user.state = 1;
         const userRef = doc(this.firestore, 'users', credential.user.uid);
         await setDoc(userRef, user);
-
+  
         // Obtener la lista de subcolecciones
-        const subcollections = ['cursos']; // Asegúrate de reemplazar estos nombres con los nombres reales de tus subcolecciones
-
+        const subcollections = ['cursos']; 
+  
         for (let subcollection of subcollections) {
           const oldSubcollection = collection(this.firestore, 'users', oldId, subcollection);
           const newSubcollection = collection(this.firestore, 'users', credential.user.uid, subcollection);
           const querySnapshot = await getDocs(oldSubcollection);
-          querySnapshot.docs.forEach(async (docSnapshot) => { // Cambiar 'doc' a 'docSnapshot'
+          
+          for (let docSnapshot of querySnapshot.docs) {
             const data: any = docSnapshot.data();
+  
             if (data.profesor === oldId) {
               data.profesor = credential.user.uid; // Actualizar la referencia del profesor al nuevo id
             }
-            await setDoc(doc(newSubcollection, docSnapshot.id), data); // Cambiar 'doc' a 'docSnapshot'
-            // Eliminar el documento en la antigua subcolección
+  
+            await setDoc(doc(newSubcollection, docSnapshot.id), data); 
             await deleteDoc(doc(oldSubcollection, docSnapshot.id));
-          });
+  
+            // Manejar subcolecciones anidadas
+            if (subcollection === 'cursos') {
+              const nestedSubcollection = 'pruebas';
+              const oldNestedSubcollection = collection(oldSubcollection, docSnapshot.id, nestedSubcollection);
+              const newNestedSubcollection = collection(newSubcollection, docSnapshot.id, nestedSubcollection);
+              const nestedQuerySnapshot = await getDocs(oldNestedSubcollection);
+              
+              for (let nestedDocSnapshot of nestedQuerySnapshot.docs) {
+                const nestedData: any = nestedDocSnapshot.data();
+                
+                // Actualizar cualquier referencia al id antiguo dentro de los documentos de 'pruebas' aquí
+  
+                await setDoc(doc(newNestedSubcollection, nestedDocSnapshot.id), nestedData);
+                await deleteDoc(doc(oldNestedSubcollection, nestedDocSnapshot.id));
+              }
+            }
+          }
         }
-
+  
         await deleteDoc(doc(this.firestore, 'users', oldId));
-
+  
         return signInWithEmailAndPassword(this.auth, credentials.email, credentials.password);
       } else {
         throw error;
       }
     }
   }
-
 
 }

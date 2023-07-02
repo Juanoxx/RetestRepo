@@ -14,7 +14,6 @@
         <ul class="header_tool">
             <li *ngIf="userRole === 'admin' || userRole === 'teacher'" class="header_create" style="cursor: pointer;" routerLink="/teacher/crear">Crear</li>
             <li class="header_create" style="cursor: pointer;" (click)="logout()">Cerrar sesión</li>
-            <button *ngIf="userRole === 'admin'" (click)="addPrueba()">Crear prueba</button>
         </ul>                   
     </nav>
 </header>

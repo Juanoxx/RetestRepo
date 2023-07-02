@@ -16,10 +16,13 @@
         <nav class="main_nav">
             <ul>
                 <li id="main_tag_reciente" class="main_tag active_tag"><a href="./evaluaciones.html">Reciente</a></li>
-                <li id="main_tag_borradores" class="main_tag"><a href="./evaluaciones_Borradores.html">Borradores</a></li>
-                <li id="main_tag_compartido" class="main_tag"><a href="./evaluaciones_Share.html">Compartido conmigo</a></li>
+                <li id="main_tag_borradores" class="main_tag"><a href="./evaluaciones_Borradores.html">Borradores</a>
+                </li>
+                <li id="main_tag_compartido" class="main_tag"><a href="./evaluaciones_Share.html">Compartido conmigo</a>
+                </li>
             </ul>
-            <div id="webapp_search" class="main_search"><input id="search_box" placeholder="Buscar" name="Buscar" type="text" class="webapp-search"></div>
+            <div id="webapp_search" class="main_search"><input id="search_box" placeholder="Buscar" name="Buscar"
+                    type="text" class="webapp-search"></div>
         </nav>
         <section class="webapp">
 
@@ -28,25 +31,26 @@
                 <h2 class="webapp_header">Nombre Prueba</h2>
                 <h2 class="webapp_header">Total</h2>
                 <h2 class="webapp_header">Curso</h2>
-                <h2 class="webapp_header">PC</h2>
-                <h2 class="webapp_header">PN</h2>
+                <h2 class="webapp_header">Inicio</h2>
+                <h2 class="webapp_header">Termino</h2>
                 <h2 class="webapp_header">Alerta</h2>
             </div>
 
-            <div class="webapp_grid" *ngFor="let prueba of pruebas" (click)="goToAgregarAlumnos(prueba.id)" style="cursor: pointer;">
+            <div class="webapp_grid" *ngFor="let prueba of pruebas" (click)="goToAgregarAlumnos(prueba.idCurso)"
+                style="cursor: pointer;">
                 <img class="test_online"
-                    [src]="prueba.state === 1 ? '../../../../../assets/IMG/Iconos/greenCircle_icon.svg' : '../../../../../assets/IMG/Iconos/redCircle_icon.svg'"
+                    [src]="isTestActive(prueba.fechaInicio, prueba.fechaTermino) ? '../../../../../assets/IMG/Iconos/greenCircle_icon.svg' : '../../../../../assets/IMG/Iconos/redCircle_icon.svg'"
                     alt="Estado de la prueba">
-                <h3>{{ prueba.name_test }}</h3>
+                <h3 class="webapp_header">{{ prueba.nombrePrueba }}</h3>
                 <span>{{ prueba.total_students }}</span>
-                <span>{{ prueba.curse }}</span>
-                <span>{{ prueba.pc }}</span>
-                <span>{{ prueba.pn }}</span>
+                <span>{{ prueba.curso.nivel }} {{ prueba.curso.seccion }}</span>
+                <span>{{ formatDate(prueba.fechaInicio) }}</span>
+                <span>{{ formatDate(prueba.fechaTermino) }}</span>
                 <img class="alert"
                     [src]="prueba.alerta === 1 ? '../../../../../assets/IMG/Iconos/yellowCircle_icon.svg' : '../../../../../assets/IMG/Iconos/greenCircle_icon.svg'"
                     alt="Alerta">
             </div>
-        
+
         </section>
     </main>
 </body>

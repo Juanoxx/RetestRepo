@@ -380,6 +380,25 @@ main{
     padding: 4px 0 4px 0;
 }
 
+.webapp .webapp_header_table1{
+    position: relative;
+    display: grid;
+    grid-template-columns: 20% 80%;
+    width: 100%;
+    background-color: var(--white);
+    padding: 4px 0 4px 0;
+    text-align: center;
+}
+
+.webapp .webapp_header_table2{
+    position: relative;
+    display: grid;
+    grid-template-columns: 10% 60% 10% 10% 10%;
+    width: 100%;
+    background-color: var(--white);
+    padding: 4px 0 4px 0;
+    text-align: center;
+}
 #grid_student{
     grid-template-columns: 10% 50% 10% 10% 10% 10%;
 
@@ -417,7 +436,7 @@ main{
 
 .webapp .webapp_grid{
     display: grid;
-    grid-template-columns: 10% 50% 10% 10% 5% 5% 10%;
+    grid-template-columns: 100%;
     height: 2em;
     padding: 0 4px 0 4px;
 }

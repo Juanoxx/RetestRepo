@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TeacherService } from '../../../../services/teacher.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { getFirestore, collection, getDocs } from "firebase/firestore";
+import { getFirestore, collection, getDocs, doc, getDoc } from "firebase/firestore";
 
 @Component({
   selector: 'app-curse-detail',
@@ -15,7 +15,7 @@ export class CurseDetailComponent implements OnInit {
   cursoId: any;
   showModal: boolean = false;
   colegioId: any;
-  pruebas: any;
+  pruebas: any[] = [];
   currentPruebaStudents: any;
 
   constructor(private th: TeacherService, private router: Router, private route: ActivatedRoute) { }
@@ -41,20 +41,53 @@ export class CurseDetailComponent implements OnInit {
 
   async getPruebas() {
     const db = getFirestore();
-    this.pruebas = []; // Reiniciar la lista de pruebas cada vez que se hace la consulta
-    for (let student of this.students) {
-      const querySnapshot = await getDocs(collection(db, `colegios/${this.colegioId}/cursos/${this.cursoId}/alumnos/${student.id}/pruebas`));
-      querySnapshot.forEach((doc) => {
-        this.pruebas.push({ studentId: student.id, pruebaId: doc.id, ...doc.data() });
+  
+    // Obtén la referencia a la colección de cursos para este usuario
+    const cursosRef = collection(db, `users/${this.userId}/cursos`);
+    const cursosSnapshot = await getDocs(cursosRef);
+  
+    // Itera a través de cada curso y obtén todas las pruebas para cada curso
+    for (const curso of cursosSnapshot.docs) {
+      const cursoId = curso.id;
+      const pruebasRef = collection(db, `users/${this.userId}/cursos/${cursoId}/pruebas`);
+      const pruebasSnapshot = await getDocs(pruebasRef);
+  
+      // Crea un array de promesas
+      const pruebasPromises = pruebasSnapshot.docs.map(async (docs) => {
+        // Crear objeto de prueba con datos de prueba y excluye 'preguntas'
+        const data = docs.data();
+        const { preguntas, ...rest } = data;
+        const prueba:any = { id: docs.id, ...rest };
+  
+        // Verifica si la prueba pertenece al curso actual
+        if (prueba.idCurso !== this.cursoId) {
+          return null;
+        }
+  
+        return prueba;
       });
+  
+      // Espera a que todas las promesas se resuelvan y añade los resultados a la lista de pruebas
+      const resolvedPruebas = await Promise.all(pruebasPromises);
+      const validPruebas = resolvedPruebas.filter(prueba => prueba !== null); // Filtrar pruebas nulas
+      this.pruebas.push(...validPruebas);
     }
-    console.log(this.pruebas)
-  }
+  
+    console.log(this.pruebas);
+  }  
 
   getStudentsForPrueba(index: number) {
     // Filtrar las pruebas basándose en el estudiante
     const pruebaId = this.pruebas[index].pruebaId;
     this.currentPruebaStudents = this.pruebas.filter((prueba: { pruebaId: any; }) => prueba.pruebaId === pruebaId);
-}
+  }
 
+  isTestActive(fechaInicio: string, fechaTermino: string): boolean {
+    const now = new Date();
+    const inicio = new Date(fechaInicio);
+    const termino = new Date(fechaTermino);
+  
+    // Verifica si la fecha actual está dentro del rango de fechas de la prueba
+    return inicio <= now && now <= termino;
+  }
 }

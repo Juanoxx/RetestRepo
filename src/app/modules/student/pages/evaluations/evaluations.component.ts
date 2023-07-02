@@ -1,6 +1,7 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { TeacherService } from '../../../../services/teacher.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute  } from '@angular/router';
+import { getFirestore, collection, getDocs, doc, getDoc } from "firebase/firestore";
 
 @Component({
   selector: 'app-evaluations',
@@ -8,46 +9,81 @@ import { Router } from '@angular/router';
   styleUrls: ['./evaluations.component.css']
 })
 export class EvaluationsComponent implements OnInit {
-  selectedTest: any = null; // Almacenará la prueba seleccionada
+  pruebas: any[] = [];
+  selectedTest: any;
 
-  tests = [
-    {
-      status: 'green',
-      testName: 'Prueba de geometría: Angulos',
-      course: '3°A',
-      attempts: 2,
-      date: '01-01-2020',
-      grade: '5,8',
-    },
-    {
-      status: 'red',
-      testName: 'Prueba de geometría: Plano Cartesiano',
-      course: '3°A',
-      attempts: 0,
-      date: '01-01-2020',
-      grade: '-',
-    }
-  ]; // Esta es la lista de pruebas a iterar
+  userRole: any;
+  userId: any;
+  colegioId: any;
 
-  constructor(private th: TeacherService,
-    private router: Router,
-    private elementRef: ElementRef) { }
+  constructor(
+    private th: TeacherService, 
+    private router: Router, 
+    private route: ActivatedRoute,
+    private elementRef: ElementRef
+  ) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    this.userRole = sessionStorage.getItem('userRole');
+    this.userId = sessionStorage.getItem('idUser');
+    this.colegioId = sessionStorage.getItem('colegioId');
+    await this.getPruebas();
   }
 
-  selectTest(event: Event, test: any) {
-    // Prevenir la propagación del evento al elemento body
-    event.stopPropagation();
+  async getPruebas() {
+    const db = getFirestore();
+  
+    const cursosRef = collection(db, `users/${this.userId}/cursos`);
+    const cursosSnapshot = await getDocs(cursosRef);
+    for (const curso of cursosSnapshot.docs) {
+      console.log(curso.id)
+      const cursoId = curso.id;
+      const pruebasRef = collection(db, `users/${this.userId}/cursos/${cursoId}/pruebas`);
+      const pruebasSnapshot = await getDocs(pruebasRef);
+  
+      const pruebasPromises = pruebasSnapshot.docs.map(async (docs) => {
+        const data = docs.data();
+        const { preguntas, ...rest } = data;
+        const prueba:any = { id: docs.id, ...rest };
+  
+        const cursoRef = doc(db, `colegios/${this.colegioId}/cursos/${prueba.idCurso}`);
+        const cursoDoc:any = await getDoc(cursoRef);
+  
+        prueba.curso = {
+          nivel: cursoDoc.data().nivel,
+          seccion: cursoDoc.data().seccion
+        };
+  
+        return prueba;
+      });
+  
+      const resolvedPruebas = await Promise.all(pruebasPromises);
+      this.pruebas.push(...resolvedPruebas);
+    }
+  
+    console.log(this.pruebas);
+  }
 
-    this.selectedTest = test;
+  selectTest(event: Event, prueba: any) {
+    event.stopPropagation();
+    this.selectedTest = prueba;
   }
 
   resetSelection(event: Event) {
-    // Verificar si el click fue dentro de algún elemento de la lista
     if (!this.elementRef.nativeElement.contains(event.target)) {
       this.selectedTest = null;
     }
   }
-}
 
+  formatDate(dateString: string): string {
+    const options: Intl.DateTimeFormatOptions = {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    };
+    const date = new Date(dateString);
+    return new Intl.DateTimeFormat('es-CL', options).format(date) + ' Hr';
+  }  
+}
