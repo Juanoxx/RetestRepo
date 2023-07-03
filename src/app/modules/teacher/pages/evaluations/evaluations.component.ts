@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TeacherService } from '../../../../services/teacher.service';
 import { Router, ActivatedRoute  } from '@angular/router';
 import { getFirestore, collection, getDocs, doc, getDoc } from "firebase/firestore";
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-evaluations',
@@ -22,7 +23,20 @@ export class EvaluationsComponent implements OnInit {
     this.userRole = sessionStorage.getItem('userRole');
     this.userId = sessionStorage.getItem('idUser');
     this.colegioId = sessionStorage.getItem('colegioId');
+
+    Swal.fire({
+      title: 'Cargando pruebas...',
+      allowEscapeKey: false,
+      allowOutsideClick: false,
+      showConfirmButton: false,
+      willOpen: () => {
+        Swal.showLoading();
+      }
+    });
+
     await this.getPruebas();
+
+    Swal.close();
   }
 
   async getPruebas() {

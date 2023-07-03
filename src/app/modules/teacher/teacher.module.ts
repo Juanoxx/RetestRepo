@@ -8,6 +8,8 @@ import { CurseDetailComponent } from './pages/curse-detail/curse-detail.componen
 import { SharedModule } from "../../shared/shared.module";
 import { CreateEvaluationComponent } from './pages/create-evaluation/create-evaluation.component';
 import { FormsModule } from '@angular/forms';
+import { StudentDetailComponent } from './pages/student-detail/student-detail.component';
+import { CustomNumberPipe, PruebasStudentsComponent } from './pages/pruebas-students/pruebas-students.component';
 
 
 @NgModule({
@@ -16,6 +18,9 @@ import { FormsModule } from '@angular/forms';
         EvaluationsComponent,
         CurseDetailComponent,
         CreateEvaluationComponent,
+        StudentDetailComponent,
+        PruebasStudentsComponent,
+        CustomNumberPipe
     ],
     imports: [
         CommonModule,

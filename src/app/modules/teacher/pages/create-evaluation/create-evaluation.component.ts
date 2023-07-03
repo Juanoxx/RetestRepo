@@ -19,7 +19,7 @@ export class CreateEvaluationComponent implements OnInit {
   @ViewChild('fileInput') fileInput: any;
   cursos: any[] = [];
   asignaturas: any[] = [];
-  selectedCursoIndex: number = 0;
+  selectedCursoIndex: any;
   userId: any;
   nombreEvaluacion: string = '';
   objetivosAprendizaje: any[] = [];
@@ -27,7 +27,7 @@ export class CreateEvaluationComponent implements OnInit {
   preguntas: any[] = [];
   fechaInicio: any;
   fechaTermino: any;
-
+  
   preguntasDisponibles: any[] = [];
   preguntasSeleccionadas: any[] = [];
   preguntasParaMover: any[] = [];

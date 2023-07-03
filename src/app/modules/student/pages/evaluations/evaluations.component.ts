@@ -1,6 +1,4 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
-import { TeacherService } from '../../../../services/teacher.service';
-import { Router, ActivatedRoute } from '@angular/router';
 import { getFirestore, collection, getDocs, doc, getDoc } from "firebase/firestore";
 import Swal from 'sweetalert2';
 
@@ -18,9 +16,6 @@ export class EvaluationsComponent implements OnInit {
   colegioId: any;
 
   constructor(
-    private th: TeacherService,
-    private router: Router,
-    private route: ActivatedRoute,
     private elementRef: ElementRef
   ) { }
 
@@ -133,4 +128,6 @@ export class EvaluationsComponent implements OnInit {
     // Verifica si la fecha actual está dentro del rango de fechas de la prueba
     return inicio <= now && now <= termino;
   }
+
+  
 }

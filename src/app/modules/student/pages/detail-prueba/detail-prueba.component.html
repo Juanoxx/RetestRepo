@@ -12,16 +12,15 @@
                 <article>
                     <div *ngFor="let letra of ['A', 'B', 'C', 'D', 'E']; let j=index">
                         <input type="radio" [(ngModel)]="prueba.preguntas[i].selectedAnswer" 
-                               name="respuesta{{i}}" [value]="letra" required autocomplete="off">
-                        <label for="respuesta">{{letra}}.
-                            {{letra === pregunta.respuesta ? pregunta.resultado : pregunta.respuestasIncorrectas?.[letra] | customNumberPipe}}
+                               name="respuesta{{i}}" [value]="letra" required autocomplete="off" id="respuesta{{i}}{{j}}" disabled>
+                        <label [ngClass]="{'correcto': letra === pregunta.respuesta && letra === prueba.preguntas[i].selectedAnswer, 'incorrecto': letra !== pregunta.respuesta && letra === prueba.preguntas[i].selectedAnswer}"
+                               for="respuesta{{i}}{{j}}">{{letra}}.
+                            {{letra === pregunta.respuesta ? (pregunta.resultado) :
+                            pregunta.respuestasIncorrectas?.[letra] | customNumberPipe}}
                         </label>
                     </div>                    
                 </article>                
             </div>
         </section>
-        <div class="login-box">
-            <input style="cursor: pointer;" type="submit" value="Enviar" (click)="onSubmit()">
-        </div>
     </main>
 </body>

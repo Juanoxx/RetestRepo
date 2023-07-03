@@ -2,8 +2,8 @@
     <nav class="header_nav">
         <ul class="header_tag">
             <li class="header_logo header_tag_item">
-                <img src="../../../../../assets/IMG/logo-green.png" alt="ReTest+ logo color">
-            </li>
+                <a [routerLink]="getHomePage()"><img style="cursor: pointer;" src="../../../../../assets/IMG/logo-green.png" alt="ReTest+ logo color"></a>
+            </li>                     
             <li *ngIf="userRole === 'teacher'" [routerLinkActive]="['header_tag_active']" class="header_tag_item">
                 <a routerLink="/teacher/cursos">Mis Cursos</a>
             </li>

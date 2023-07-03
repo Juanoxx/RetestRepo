@@ -19,7 +19,6 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     this.userRole = sessionStorage.getItem('userRole');
     this.userId = sessionStorage.getItem('idUser');
-    console.log(this.route.snapshot.paramMap.get('evaluacionId'));
   }
 
   activeView: string = 'general';
@@ -37,72 +36,13 @@ export class NavbarComponent implements OnInit {
       .catch(error => console.log(error));
   }
 
-  createUser() {
-    const user = {
-      domicilio: 'Apolo Xlll 1641',
-      email: 'juanteste@gmail.cl',
-      first_name: 'Juan',
-      last_name: 'Arredondo',
-      password: 'hashhash',
-      rol: 'teacher',
-      rut: '19283992-0',
-      telefono: '992199378'
-    };
-
-    this.th.createUser(user)
-      .then(() => console.log('Usuario creado exitosamente.'))
-      .catch(error => console.log(error));
-  }
-
-  addPrueba() {
-    const prueba = {
-      state: 1,
-      name_test: 'Prueba1',
-      total_students: 10,
-      curse: 'Primero B',
-      pc: 1.2,
-      pn: 2.2,
-      alerta: 1
-    };
-
-    
-    this.th.addPrueba(this.userId,'IQGpbFq73BoWvRwrNsW5',prueba)
-      .then(() => console.log('Prueba creado exitosamente.'))
-      .catch(error => console.log(error));
-  }
-
-  addAlumno() {
-    const pruebaId = this.route.snapshot.paramMap.get('evaluacionId');
-    if (pruebaId === null) {
-      console.error('No se encontró el ID de la prueba en la ruta');
-      return;
+  getHomePage(): string {
+    switch (this.userRole) {
+      case 'admin': return '/admin/home';
+      case 'student': return '/student/evaluaciones';
+      case 'teacher': return '/teacher/cursos';
+      default: return '/'; // Aquí puedes establecer la página de inicio predeterminada para cuando no se conozca el rol del usuario
     }
-  
-    const alumno = {
-      name: 'Luna',
-      promedio: 6.8,
-      repetitions: 3,
-      alerta: 1
-    };
-  
-    this.th.addAlumno(this.userId, pruebaId, alumno)
-      .then(() => console.log('Alumno agregado exitosamente.'))
-      .catch(error => console.log(error));
-  }  
-  
-  addCurso(){
-    const curso = {
-      year:2020,
-      subject: 'Matemáticas',
-      curse: '1°B',
-      students: 15,
-      actives: 3,
-      promedio: 3.2, //promedio curso
-      alerta: 2
-    };
-  
-    this.th.addCurso(this.userId, curso)
-      .then(() => console.log('Curso agregado exitosamente.'))
-      .catch(error => console.log(error));
   }
+  
 }

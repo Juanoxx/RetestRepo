@@ -40,7 +40,7 @@
 
         <section class="webapp_button_student">
             <a
-                [routerLink]="['/student/prueba', selectedTest?.idCurso, selectedTest?.id, selectedTest?.state === 0 ? 0 : selectedTest?.maxNumIntento]">
+                [routerLink]="['/student/prueba', selectedTest?.idCurso, selectedTest?.idPrueba, selectedTest?.state === 0 ? 0 : selectedTest?.maxNumIntento]">
                 <button
                     [ngStyle]="{'background-color': selectedTest && isTestActive(selectedTest.fechaInicio, selectedTest.fechaTermino) ? 'green' : 'gray'}"
                     [disabled]="!selectedTest || !isTestActive(selectedTest.fechaInicio, selectedTest.fechaTermino)"
@@ -48,9 +48,11 @@
                     {{ selectedTest && selectedTest.state === 0 ? 'Iniciar prueba' : 'Reintentar' }}
                 </button>
             </a>
-            <a [routerLink]="['/student/evaluaciones/detail']">
-                <button [ngStyle]="{'background-color': selectedTest ? 'green' : 'gray'}"
-                    class="centered-button btn_desabilitado" style="cursor: pointer;">Revisar</button>
+            <a [routerLink]="['/student/evaluaciones/detail',selectedTest?.idCurso,selectedTest?.idPrueba]">
+                <button [ngStyle]="{'background-color': selectedTest ? 'green' : 'gray'}" [disabled]="!selectedTest"
+                    class="centered-button btn_desabilitado" style="cursor: pointer;">
+                    Revisar
+                </button>
             </a>
         </section>
 

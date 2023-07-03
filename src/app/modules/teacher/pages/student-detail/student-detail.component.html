@@ -1,8 +1,6 @@
 <body (click)="resetSelection($event)">
     <app-navbar></app-navbar>
     <main class="main_student">
-        <nav class="main_nav">
-        </nav>
         <section class="webapp webappstudent">
             <div class="webapp_header_grid">
                 <h2 class="webapp_header">Estado</h2>
@@ -26,13 +24,13 @@
         </section>
 
         <section class="webapp_button_student">
-            <a [routerLink]="['/student/evaluaciones/detail', idCurso, idPrueba, selectedTest?.numIntento]" [style.pointer-events]="selectedTest ? 'auto' : 'none'">
+            <a [routerLink]="['/teacher/cursos/prueba', userId,idCurso, idPrueba, selectedTest?.numIntento]" [style.pointer-events]="selectedTest ? 'auto' : 'none'">
                 <button style="cursor: pointer;" [disabled]="!selectedTest" 
                     [ngStyle]="{'background-color': selectedTest ? 'green' : 'gray'}"
                     class="centered-button">Ver</button>
             </a>
 
-            <a [routerLink]="['/student/evaluaciones']" class="centered-button">Volver</a>
+            <a [routerLink]="['/teacher/cursos',idCurso,'detail']" class="centered-button">Volver</a>
         </section>
     </main>
 </body>

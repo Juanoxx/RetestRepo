@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
 import { addDoc, query, where } from '@angular/fire/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { getFirestore, doc, getDoc, collection, getDocs } from "firebase/firestore";
@@ -12,6 +12,27 @@ export interface Objetivo {
   nivel: string;
   num_objetivo: string;
 }
+@Pipe({ name: 'customNumberPipe' })
+export class CustomNumberPipe implements PipeTransform {
+  transform(value: any): string {
+    if (typeof value === 'number') {
+      if (Number.isInteger(value)) {
+        // Entero
+        return value.toString();
+      } else {
+        // Decimal con 4 dígitos de precisión
+        return value.toFixed(4);
+      }
+    } else if (typeof value === 'string' && value.includes('/')) {
+      // Fracción
+      return value;
+    } else {
+      // En caso de otro tipo de datos, simplemente conviértelo a string
+      return String(value);
+    }
+  }
+}
+
 
 @Component({
   selector: 'app-prueba',
@@ -58,7 +79,7 @@ export class PruebaComponent implements OnInit {
       this.objetivo = await this.getObjetivo(idObjetivo);
       console.log(this.objetivo)
     }
-    
+
   }
 
   async getPrueba(): Promise<any> {
@@ -95,7 +116,8 @@ export class PruebaComponent implements OnInit {
       for (const pregunta of this.prueba.preguntas) {
         const incorrectas = alternativas.filter(letra => letra !== pregunta.respuesta);
         pregunta.respuestasIncorrectas = incorrectas.reduce((respuestas: any, letra) => {
-          respuestas[letra] = (+pregunta.resultado) + this.aleatorio();
+          const resultado = isNaN(+pregunta.resultado) ? pregunta.resultado : +pregunta.resultado;
+          respuestas[letra] = this.aleatorio(resultado);
           return respuestas;
         }, {});
       }
@@ -122,15 +144,43 @@ export class PruebaComponent implements OnInit {
     }
   }
 
-  aleatorio() {
-    return (Math.random() - 0.5) * 20;
+  aleatorio(resultado: number | string) {
+    console.log(`Tipo de resultado: ${typeof resultado}, valor: ${resultado}`);
+    if (typeof resultado === 'number') {
+      if (Number.isInteger(resultado)) {
+        // Entero
+        let randomInt;
+        do {
+          randomInt = Math.floor((Math.random() - 0.5) * 2 * resultado);
+        } while(randomInt === 0);
+        return randomInt;
+      } else {
+        // Decimal
+        let randomFloat;
+        do {
+          randomFloat = (Math.random() - 0.5) * 2 * resultado;
+        } while(randomFloat === 0);
+        return randomFloat;
+      }
+    } else {
+      // Fracción
+      const [num, denom] = resultado.split('/').map(Number);
+      const decimal = num / denom;
+      let fraccionAleatoria;
+      let fraccionAleatoriaNum;
+      do {
+        fraccionAleatoria = (Math.random() - 0.5) * 2 * decimal;
+        fraccionAleatoriaNum = Math.round(fraccionAleatoria * denom);
+      } while(fraccionAleatoriaNum === 0);
+      return `${fraccionAleatoriaNum} / ${denom}`;
+    }
   }
 
   async onSubmit(): Promise<void> {
     let totalScore = 0;
     const responses: any[] = [];
-    const idUser: any = await this.obtenerDocumentoPorId(this.colegioId, this.idCurso, this.idUserStundent)
-
+    const idUser: any = await this.obtenerDocumentoPorId(this.colegioId, this.idCurso, this.idUserStundent);
+    const idPrueba: any = await this.obtenerDocumentoPorPruebaId();
     // Comprobar si todas las preguntas han sido respondidas
     const allQuestionsAnswered = this.prueba.preguntas.every((pregunta: any) => pregunta.selectedAnswer !== undefined);
 
@@ -159,14 +209,18 @@ export class PruebaComponent implements OnInit {
     }
     // Crear el objeto para guardar en la base de datos
     const pruebaRealizada = {
+      nombrePrueba: this.prueba.nombrePrueba,
       idPrueba: this.idPrueba,
       numIntento: this.numIntento,
       calificacion: calificacion.toFixed(1),
       respuestas: responses,
-      preguntas: this.prueba.preguntas
+      preguntas: this.prueba.preguntas,
+      realizacion: this.formatDate(new Date())
     };
 
     console.log(`colegios/${this.colegioId}/cursos/${this.idCurso}/alumnos/${idUser.id}/pruebas/${this.idPrueba}/pruebasRealizadas`)
+    console.log( `users/${this.idUser}/cursos/${this.idCurso}/pruebas/${idPrueba.id}/pruebasRealizadas`)
+    
     // Guardar `pruebaRealizada` en la subcolección `pruebasRealizadas`
     const db = getFirestore();
     const pruebasRealizadasRef = collection(
@@ -177,7 +231,7 @@ export class PruebaComponent implements OnInit {
     const db2 = getFirestore();
     const pruebasRealizadasRefUsers = collection(
       db2,
-      `users/${this.idUser}/cursos/${this.idCurso}/pruebas/${this.idPrueba}/pruebasRealizadas`
+      `users/${this.idUser}/cursos/${this.idCurso}/pruebas/${idPrueba.id}/pruebasRealizadas`
     );
 
     try {
@@ -231,5 +285,41 @@ export class PruebaComponent implements OnInit {
       console.error("Error al obtener el documento:", error);
       return null;
     }
+  }
+
+  async obtenerDocumentoPorPruebaId(): Promise<any> {
+    const db = getFirestore();
+    const pruebasRef = collection(db, `users/${this.idUser}/cursos/${this.idCurso}/pruebas`);
+
+    // Construir la consulta con el filtro por el campo 'id'
+    const q = query(pruebasRef, where("idPrueba", "==", this.idPrueba));
+
+    try {
+      const querySnapshot = await getDocs(q);
+
+      if (querySnapshot.size > 0) {
+        // Obtener el primer documento que cumple con el filtro
+        const documento = querySnapshot.docs[0];
+        return { id: documento.id };
+      } else {
+        console.log("No se encontró ningún documento con el ID especificado");
+        return null;
+      }
+    } catch (error) {
+      console.error("Error al obtener el documento:", error);
+      return null;
+    }
+  }
+
+  formatDate(dateString: any): string {
+    const options: Intl.DateTimeFormatOptions = {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    };
+    const date = new Date(dateString);
+    return new Intl.DateTimeFormat('es-CL', options).format(date) + ' Hr';
   }
 }

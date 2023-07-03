@@ -5,11 +5,12 @@ import { getFirestore, collection, getDocs, doc, getDoc } from "firebase/firesto
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-evaluations-detail',
-  templateUrl: './evaluations-detail.component.html',
-  styleUrls: ['./evaluations-detail.component.css']
+  selector: 'app-student-detail',
+  templateUrl: './student-detail.component.html',
+  styleUrls: ['./student-detail.component.css']
 })
-export class EvaluationsDetailComponent implements OnInit {
+export class StudentDetailComponent implements OnInit {
+
   selectedTest: any = null;
   tests: any[] = [];
   userId: any;
@@ -17,6 +18,7 @@ export class EvaluationsDetailComponent implements OnInit {
   curso: any;
   idCurso: any;
   idPrueba: any;
+  idUser: any;
 
   constructor(
     private router: Router,
@@ -25,9 +27,9 @@ export class EvaluationsDetailComponent implements OnInit {
   ) { }
 
   async ngOnInit(): Promise<void> {
-    this.idCurso = this.route.snapshot.paramMap.get('idCurso');
+    this.idCurso = this.route.snapshot.paramMap.get('cursoId');
     this.idPrueba = this.route.snapshot.paramMap.get('idPrueba');
-    this.userId = sessionStorage.getItem('idUserStundent');
+    this.userId = this.route.snapshot.paramMap.get('idStudent');
     this.colegioId = sessionStorage.getItem('colegioId');
     Swal.fire({
       title: 'Cargando pruebas...',
@@ -39,9 +41,9 @@ export class EvaluationsDetailComponent implements OnInit {
       }
     });
 
-    const idUser: any = await this.obtenerDocumentoPorId(this.colegioId, this.idCurso, this.userId)
+    this.idUser = await this.obtenerDocumentoPorId(this.colegioId, this.idCurso, this.userId)
     const db = getFirestore();
-    const testsCollection = collection(db, `colegios/${this.colegioId}/cursos/${this.idCurso}/alumnos/${idUser.id}/pruebas/${this.idPrueba}/pruebasRealizadas`);
+    const testsCollection = collection(db, `colegios/${this.colegioId}/cursos/${this.idCurso}/alumnos/${this.idUser.id}/pruebas/${this.idPrueba}/pruebasRealizadas`);
     const testsSnapshot = await getDocs(testsCollection);
     testsSnapshot.forEach(doc => {
       this.tests.push(doc.data());
@@ -97,5 +99,4 @@ export class EvaluationsDetailComponent implements OnInit {
   parseAndIncrement(value: string): number {
     return Number(value) + 1;
   }
-  
 }
