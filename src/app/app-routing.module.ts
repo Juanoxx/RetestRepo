@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard, canActivate, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 import { RoleGuard } from 'src/guards/role.guard';
 
 const routes: Routes = [
