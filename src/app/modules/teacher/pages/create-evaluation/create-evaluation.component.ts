@@ -1,10 +1,9 @@
 import { Component, OnInit, ViewChild, ElementRef, SimpleChanges } from '@angular/core';
 import { addDoc, doc, setDoc } from '@angular/fire/firestore';
-import { updateMetadata } from '@angular/fire/storage';
 import { getFirestore, collection, getDocs } from "firebase/firestore";
-import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import Swal from 'sweetalert2';
-
+import { Router } from '@angular/router';
 interface Objetivo {
   id: string;
   nivel: string;
@@ -39,7 +38,7 @@ export class CreateEvaluationComponent implements OnInit {
   selectedId: string;
   selectedNivel: string;
   colegioId: any;
-  constructor() {
+  constructor(private router: Router) {
     this.selectedId = '';
     this.selectedNivel = '';
   }
@@ -272,6 +271,7 @@ export class CreateEvaluationComponent implements OnInit {
         title: '¡Prueba creada!',
         text: 'Has creado la prueba exitosamente.',
       });
+      this.router.navigate(['/teacher/cursos']);
     }
     catch (error) {
       // Notificación SweetAlert de error

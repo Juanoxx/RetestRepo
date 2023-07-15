@@ -152,14 +152,14 @@ export class PruebaComponent implements OnInit {
         let randomInt;
         do {
           randomInt = Math.floor((Math.random() - 0.5) * 2 * resultado);
-        } while(randomInt === 0);
+        } while (Math.abs(randomInt - resultado) <= 1);
         return randomInt;
       } else {
         // Decimal
         let randomFloat;
         do {
           randomFloat = (Math.random() - 0.5) * 2 * resultado;
-        } while(randomFloat === 0);
+        } while (Math.abs(randomFloat - resultado) <= 0.01); // puedes ajustar la precisión aquí
         return randomFloat;
       }
     } else {
@@ -169,9 +169,9 @@ export class PruebaComponent implements OnInit {
       let fraccionAleatoria;
       let fraccionAleatoriaNum;
       do {
-        fraccionAleatoria = (Math.random() - 0.5) * 2 * decimal;
+        fraccionAleatoria = (Math.random() - 0.5) * 10 * decimal;
         fraccionAleatoriaNum = Math.round(fraccionAleatoria * denom);
-      } while(fraccionAleatoriaNum === 0);
+      } while (Math.abs(fraccionAleatoriaNum - num) <= 1);
       return `${fraccionAleatoriaNum} / ${denom}`;
     }
   }
@@ -219,8 +219,8 @@ export class PruebaComponent implements OnInit {
     };
 
     console.log(`colegios/${this.colegioId}/cursos/${this.idCurso}/alumnos/${idUser.id}/pruebas/${this.idPrueba}/pruebasRealizadas`)
-    console.log( `users/${this.idUser}/cursos/${this.idCurso}/pruebas/${idPrueba.id}/pruebasRealizadas`)
-    
+    console.log(`users/${this.idUser}/cursos/${this.idCurso}/pruebas/${idPrueba.id}/pruebasRealizadas`)
+
     // Guardar `pruebaRealizada` en la subcolección `pruebasRealizadas`
     const db = getFirestore();
     const pruebasRealizadasRef = collection(

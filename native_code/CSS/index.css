@@ -474,8 +474,69 @@ header{
     opacity: 0;
 }
 
-/* */
+/* Propósito */
 
+.apoyo{
+    background-color:var(--rorangew);
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 40px;
+    margin-bottom: 20px;
+}
+
+.apoyo .ico5{
+    position: absolute;
+    width: 50px;
+    top: 20px;
+    right: 50px;
+}
+
+.apoyo-box{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+
+    margin-top: 12px;
+}
+
+.apoyo-box-2{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    max-width: 1000px;
+    margin-top: 12px;
+}
+
+
+#innovo{
+    width: 10%;
+    height: 30%;
+}
+
+#corfo{
+    width: 20%;
+    height: 50%;
+}
+
+#uie{
+    width: 30%;
+    height: 20%;
+}
+
+#ensena{
+    width: 10%;
+    height: 20%;
+}
 /* */
 
 /* */
@@ -654,3 +715,4 @@ footer{
         border-bottom: 1px solid var(--very-light-pink);
     }
 }
+

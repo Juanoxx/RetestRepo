@@ -3,10 +3,12 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { TeacherService } from '../../../../services/teacher.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { getAuth, onAuthStateChanged } from '@angular/fire/auth';
+import { getAuth } from '@angular/fire/auth';
 import { Firestore } from 'firebase/firestore';
 import { doc, getDoc, getFirestore } from '@angular/fire/firestore';
 import { AdminService } from 'src/app/services/admin.service';
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -33,10 +35,19 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    console.log(this.formReg.value);
+    Swal.fire({
+      title: 'Iniciando sesión',
+      didOpen: () => {
+        Swal.showLoading()
+      },
+      allowOutsideClick: false,
+      allowEscapeKey: false,
+      showConfirmButton: false
+    });
     this.admin.login(this.formReg.value)
     .then(async (response) => {
         console.log(response);
+        Swal.close();
         if (response && response.user) {
           
           // Recupera el rol del usuario
@@ -67,6 +78,7 @@ export class LoginComponent implements OnInit {
         console.error(error);
         this.showError = true;
         this.cd.detectChanges(); 
+        Swal.close();
       });
   }
 
